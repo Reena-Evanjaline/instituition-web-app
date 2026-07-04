@@ -1,0 +1,100 @@
+// AI Institute for Native Americans — data model
+// Docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+/// Admin users who can log in to the dashboard.
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+/// A 2-day seminar session that people can register for.
+model Seminar {
+  id            String         @id @default(cuid())
+  title         String
+  startDate     DateTime
+  endDate       DateTime
+  location      String         @default("Online / Virtual")
+  priceCents    Int            @default(159500)
+  capacity      Int            @default(40)
+  description   String?        @db.Text
+  published     Boolean        @default(true)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  registrations Registration[]
+
+  @@index([startDate])
+}
+
+enum RegistrationStatus {
+  PENDING
+  PAID
+  CANCELLED
+}
+
+/// A person registering for a seminar (with Stripe payment tracking).
+model Registration {
+  id              String             @id @default(cuid())
+  fullName        String
+  email           String
+  phone           String?
+  organization    String?
+  role            String?
+  descriptor      String?
+  cause           String?
+  amountCents     Int                @default(159500)
+  status          RegistrationStatus @default(PENDING)
+  stripeSessionId String?            @unique
+  seminar         Seminar?           @relation(fields: [seminarId], references: [id], onDelete: SetNull)
+  seminarId       String?
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  @@index([email])
+  @@index([status])
+}
+
+enum MessageStatus {
+  NEW
+  READ
+  ARCHIVED
+}
+
+/// A message submitted through the Contact form.
+model ContactMessage {
+  id           String        @id @default(cuid())
+  fullName     String
+  email        String
+  organization String?
+  subject      String
+  message      String        @db.Text
+  status       MessageStatus @default(NEW)
+  createdAt    DateTime      @default(now())
+
+  @@index([status])
+}
+
+/// Editable page content blocks for the CMS (keyed by page + block key).
+model ContentBlock {
+  id        String   @id @default(cuid())
+  page      String
+  key       String
+  value     String   @db.Text
+  updatedAt DateTime @updatedAt
+
+  @@unique([page, key])
+  @@index([page])
+}
