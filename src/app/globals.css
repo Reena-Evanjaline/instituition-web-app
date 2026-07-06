@@ -20,9 +20,9 @@
   --color-navy-700: #122032;
   --color-navy-800: #0e1a29;
 
-  --color-rust-400: #cd6538;
-  --color-rust-500: #b14e23;
-  --color-rust-600: #98411b;
+  --color-rust-400: #cf5a24;
+  --color-rust-500: #b33d07;
+  --color-rust-600: #963306;
 
   --color-gold-400: #e0b45a;
   --color-gold-500: #d3a03a;
@@ -35,15 +35,15 @@
   --color-ink: #23201c;
   --color-ink-soft: #4f4a42;
 
-  --font-sans: var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-oswald), "Arial Narrow", sans-serif;
+  --font-sans: Arial, Helvetica, "Liberation Sans", sans-serif;
+  --font-display: Arial, Helvetica, "Liberation Sans", sans-serif;
 
   --shadow-soft: 0 18px 48px -20px rgb(12 45 40 / 0.35);
   --shadow-card: 0 8px 30px -14px rgb(20 20 20 / 0.18);
 }
 
 :root {
-  --background: var(--color-cream-100);
+  --background: #fbf3ea;
   --foreground: var(--color-ink);
 }
 
@@ -63,6 +63,11 @@ h1, h2, h3, h4, .font-display {
 @layer components {
   .container-page {
     @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+
+  /* Full-bleed container — no max-width cap, edge padding only. */
+  .container-fluid {
+    @apply mx-auto w-full px-5 sm:px-8 xl:px-12;
   }
 
   /* Buttons — squared, bold, uppercase like the mockups */

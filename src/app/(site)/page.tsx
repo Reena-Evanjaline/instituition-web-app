@@ -9,7 +9,6 @@ import {
   UtensilsCrossed,
   BookOpen,
   Award,
-  Feather,
   ArrowRight,
 } from "lucide-react";
 import { getPageContent } from "@/lib/content";
@@ -55,86 +54,72 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* ── Hero ─────────────────────────────────────────── */}
+      {/* ── Hero — exact reference banner ─────────────────── */}
       <section>
-        <div className="relative overflow-hidden bg-navy-800">
-          {/* Photo sits in the right half and shows the full scene (no full-bleed crop). */}
-          <div className="absolute inset-y-0 right-0 hidden w-1/2 md:block">
-            <Image
-              src="/images/home-hero.jpg"
-              alt="Native American professionals training with AI"
-              fill
-              priority
-              sizes="50vw"
-              className="object-cover"
-            />
-            {/* Soft seam: fade the photo's left edge into the dark panel. */}
-            <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-navy-800 to-transparent" />
-          </div>
-          <div className="container-page relative py-20 sm:py-28 lg:py-32">
-            <div className="max-w-2xl">
-              <Reveal>
-                <h1 className="font-display text-4xl font-bold uppercase leading-[1.02] text-cream-50 sm:text-5xl lg:text-6xl">
-                  {c.heroTitle}
-                  <span className="mt-2 block text-2xl font-semibold text-cream-100 sm:text-3xl lg:text-4xl">
-                    {c.heroTitleAccent}
-                  </span>
-                </h1>
-              </Reveal>
-              <Reveal delay={0.1}>
-                <p className="mt-6 max-w-lg text-lg text-cream-100/90">
-                  {c.heroSubtitle}
-                </p>
-              </Reveal>
-              <Reveal delay={0.2}>
-                <div className="mt-9 flex flex-wrap gap-4">
-                  <Link href="/register" className="btn-accent">
-                    {c.heroPrimaryCta}
-                  </Link>
-                  <Link href="/seminars" className="btn-outline-light">
-                    {c.heroSecondaryCta}
-                  </Link>
-                </div>
-              </Reveal>
-            </div>
-          </div>
+        <div className="relative w-full aspect-[2600/920] bg-navy-800">
+          <Image
+            src="/images/home-hero-banner.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          {/* Real, clickable targets sit exactly over the painted buttons, so
+              registration keeps working while the banner stays pixel-faithful
+              to the reference. */}
+          <Link
+            href="/register"
+            aria-label={c.heroPrimaryCta}
+            className="absolute left-[4.6%] top-[77.3%] h-[11.4%] w-[24.8%] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream-50"
+          />
+          <Link
+            href="/seminars"
+            aria-label={c.heroSecondaryCta}
+            className="absolute left-[31.6%] top-[77.3%] h-[11.4%] w-[16.8%] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream-50"
+          />
+          {/* Live copy kept for SEO / screen readers (the visible text is baked
+              into the banner image). */}
+          <h1 className="sr-only">
+            {c.heroTitle} {c.heroTitleAccent}. {c.heroSubtitle}
+          </h1>
         </div>
         <WovenBorder size="lg" />
       </section>
 
       {/* ── Info bar ─────────────────────────────────────── */}
-      <section className="bg-cream-100">
-        <div className="container-page py-8">
-          <div className="flex flex-col items-center gap-6 lg:flex-row lg:justify-between lg:gap-4">
-            <div className="flex items-center gap-3">
-              <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-teal-600 text-cream-50">
-                <Calendar className="h-7 w-7" />
+      <section className="bg-[#FBF3EA]">
+        <div className="container-page py-10">
+          <div className="flex flex-col items-center gap-7 lg:flex-row lg:justify-between lg:gap-5">
+            <div className="flex items-center gap-4">
+              <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-teal-600 text-cream-50">
+                <Calendar className="h-8 w-8" />
               </span>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-ink-soft">
+                <p className="text-sm font-semibold uppercase tracking-wide text-ink-soft">
                   Next Seminar
                 </p>
-                <p className="font-display text-lg font-bold text-navy-600">
+                <p className="whitespace-nowrap font-display text-xl font-bold text-navy-600">
                   {next ? formatDateRange(next.startDate, next.endDate) : "Coming soon"}
                 </p>
               </div>
             </div>
 
-            <div className="hidden h-12 w-px bg-cream-300 lg:block" />
+            <div className="hidden h-14 w-px bg-cream-300 lg:block" />
 
             <div className="text-center">
-              <p className="font-display text-3xl font-bold text-navy-600">
+              <p className="font-display text-4xl font-bold text-navy-600">
                 <CountUp value={(next?.priceCents ?? 159500) / 100} prefix="$" />
               </p>
-              <p className="text-xs font-semibold uppercase tracking-wide text-ink-soft">
+              <p className="text-sm font-semibold uppercase tracking-wide text-ink-soft">
                 {c.priceLabel}
               </p>
-              <p className="text-xs text-ink-soft">{c.priceNote}</p>
+              <p className="text-sm text-ink-soft">{c.priceNote}</p>
             </div>
 
-            <div className="hidden h-12 w-px bg-cream-300 lg:block" />
+            <div className="hidden h-14 w-px bg-cream-300 lg:block" />
 
-            <div className="flex flex-wrap items-center justify-center gap-6">
+            <div className="flex flex-nowrap items-start justify-center gap-6">
               {[
                 [UtensilsCrossed, "Meals Included"],
                 [BookOpen, "Training Materials"],
@@ -142,9 +127,9 @@ export default async function HomePage() {
               ].map(([Icon, label]) => {
                 const I = Icon as typeof Award;
                 return (
-                  <div key={label as string} className="flex flex-col items-center gap-1.5 text-center">
-                    <I className="h-6 w-6 text-navy-600" />
-                    <span className="max-w-[6rem] text-xs font-semibold uppercase tracking-wide text-navy-600">
+                  <div key={label as string} className="flex w-28 flex-col items-center gap-2 text-center">
+                    <I className="h-8 w-8 shrink-0 text-navy-600" />
+                    <span className="text-xs font-semibold uppercase leading-snug tracking-wide text-navy-600">
                       {label as string}
                     </span>
                   </div>
@@ -152,7 +137,7 @@ export default async function HomePage() {
               })}
             </div>
 
-            <Link href="/register" className="btn-accent">
+            <Link href="/register" className="btn-accent whitespace-nowrap px-6 py-3.5 text-base">
               Reserve Your Spot Now
             </Link>
           </div>
@@ -163,20 +148,20 @@ export default async function HomePage() {
       </section>
 
       {/* ── Benefits ─────────────────────────────────────── */}
-      <section className="bg-cream-100 py-16 sm:py-20">
+      <section className="bg-[#FBF3EA] py-16 sm:py-20">
         <div className="container-page">
           <FlourishTitle>{c.benefitsTitle}</FlourishTitle>
           <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {benefits.map((b, i) => (
               <Reveal key={b.title} delay={i * 0.08} variant="blur">
                 <div className="group flex cursor-default flex-col items-center text-center">
-                  <span className={`icon-pop grid h-16 w-16 place-items-center rounded-full text-cream-50 shadow-card ${b.color}`}>
-                    <b.icon className="h-8 w-8" />
+                  <span className={`icon-pop grid h-20 w-20 place-items-center rounded-full text-cream-50 shadow-card ${b.color}`}>
+                    <b.icon className="h-10 w-10" />
                   </span>
-                  <h3 className="mt-5 font-display text-lg font-bold uppercase tracking-wide text-navy-600">
+                  <h3 className="mt-5 font-display text-xl font-bold uppercase tracking-wide text-navy-600">
                     {b.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">{b.body}</p>
+                  <p className="mt-2 text-base leading-relaxed text-ink-soft">{b.body}</p>
                 </div>
               </Reveal>
             ))}
@@ -185,7 +170,7 @@ export default async function HomePage() {
       </section>
 
       {/* ── Upcoming seminars ────────────────────────────── */}
-      <section className="border-t border-cream-300 bg-cream-100 py-16 sm:py-20">
+      <section className="border-t border-cream-300 bg-[#FBF3EA] py-16 sm:py-20">
         <div className="container-page">
           <FlourishTitle>Upcoming Seminars</FlourishTitle>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -202,10 +187,23 @@ export default async function HomePage() {
       </section>
 
       {/* ── Causes CTA band ──────────────────────────────── */}
-      <section className="relative overflow-hidden bg-teal-700 text-cream-50">
-        <div className="absolute -right-16 top-1/2 hidden h-80 w-80 -translate-y-1/2 rounded-full border-[20px] border-cream-50/5 lg:block" />
+      <section className="relative overflow-hidden bg-[#002E33] text-cream-50">
+        <Image
+          src="/images/cta-mandala.png"
+          alt=""
+          width={646}
+          height={592}
+          aria-hidden
+          className="pointer-events-none absolute right-0 top-0 hidden h-full w-auto select-none object-cover object-left lg:block"
+        />
         <div className="container-page relative grid items-center gap-8 py-14 lg:grid-cols-[auto_1fr_auto]">
-          <Feather className="animate-float h-24 w-24 shrink-0 text-cream-100/90" strokeWidth={1} />
+          <Image
+            src="/images/cta-feather-v2.png"
+            alt="Beaded eagle feather"
+            width={660}
+            height={600}
+            className="animate-float h-40 w-auto shrink-0 select-none lg:h-48"
+          />
           <div>
             <h2 className="font-display text-3xl font-bold uppercase tracking-wide sm:text-4xl">
               Invest In Your Future. Invest In Your Nation.

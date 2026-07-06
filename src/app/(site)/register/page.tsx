@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { XCircle, Users, Feather } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { getPageContent } from "@/lib/content";
 import { getUpcomingSeminars } from "@/lib/seminars";
 import { isStripeEnabled } from "@/lib/stripe";
-import { PageHero } from "@/components/PageHero";
-import { QuickActions } from "@/components/QuickActions";
+import { WovenBorder } from "@/components/WovenBorder";
 import { RegisterForm } from "./RegisterForm";
 
 export const metadata: Metadata = { title: "Register" };
@@ -28,20 +28,50 @@ export default async function RegisterPage({
 
   return (
     <>
-      <QuickActions />
-      <PageHero
-        image="/images/register-hero.jpg"
-        imageAlt="Mountain lake landscape"
-        title={c.title}
-        subtitle={
-          <span className="font-display text-xl font-semibold uppercase tracking-wide text-gold-400">
-            {c.subtitle}
-          </span>
-        }
-        topWeave
-      >
-        <p className="mt-4 max-w-xl text-cream-100/85">{c.intro}</p>
-      </PageHero>
+      {/* Hero — dark teal band, text left, mountain/lake photo right */}
+      <section>
+        <WovenBorder />
+        <div className="relative overflow-hidden bg-[#043331] text-cream-50">
+          <div className="absolute inset-y-0 right-0 hidden w-[44%] lg:block">
+            <Image
+              src="/images/register-hero.jpg"
+              alt="Mountain lake landscape"
+              fill
+              priority
+              sizes="44vw"
+              className="object-cover"
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to right, #043331 0%, rgba(4,51,49,0.4) 16%, transparent 44%)",
+              }}
+            />
+          </div>
+          <div className="container-page relative py-12 lg:py-16">
+            <div className="max-w-xl">
+              <h1 className="font-display text-4xl font-bold uppercase leading-[1.05] sm:text-5xl">
+                {c.title}
+              </h1>
+              <p className="mt-3 font-display text-xl font-semibold uppercase tracking-wide text-gold-400">
+                {c.subtitle}
+              </p>
+              <p className="mt-4 max-w-md text-cream-100/85">{c.intro}</p>
+            </div>
+          </div>
+          {/* Mobile: photo below */}
+          <div className="relative h-48 w-full sm:h-60 lg:hidden">
+            <Image
+              src="/images/register-hero.jpg"
+              alt=""
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+          </div>
+        </div>
+      </section>
 
       <section className="py-14 sm:py-16">
         <div className="container-page">
@@ -83,7 +113,9 @@ export default async function RegisterPage({
               </div>
             </div>
             <div className="flex items-center gap-4 border-cream-300 lg:border-l lg:pl-8">
-              <Feather className="animate-float hidden h-12 w-12 shrink-0 text-teal-600 sm:block" strokeWidth={1.2} />
+              <span className="hidden h-14 w-14 shrink-0 place-items-center rounded-full bg-teal-600 text-cream-50 sm:grid">
+                <Feather className="h-7 w-7" strokeWidth={1.5} />
+              </span>
               <p className="text-ink-soft">
                 Together, we build stronger Nations through education, skills, and
                 stewardship of our people, our lands, and our future.{" "}

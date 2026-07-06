@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
 
 type Variant = "up" | "down" | "left" | "right" | "fade" | "scale" | "blur";
@@ -38,14 +38,15 @@ export function Reveal({
   variant?: Variant;
   className?: string;
 }) {
+  const reduce = useReducedMotion();
   return (
     <motion.div
       className={className}
       variants={makeVariants(variant, y)}
-      initial="hidden"
+      initial={reduce ? "show" : "hidden"}
       whileInView="show"
       viewport={{ once: true, margin: "-70px" }}
-      transition={{ duration, delay, ease: EASE }}
+      transition={reduce ? { duration: 0 } : { duration, delay, ease: EASE }}
     >
       {children}
     </motion.div>
@@ -64,10 +65,11 @@ export function RevealGroup({
   stagger?: number;
   className?: string;
 }) {
+  const reduce = useReducedMotion();
   return (
     <motion.div
       className={className}
-      initial="hidden"
+      initial={reduce ? "show" : "hidden"}
       whileInView="show"
       viewport={{ once: true, margin: "-70px" }}
       variants={{ show: { transition: { staggerChildren: stagger } } }}

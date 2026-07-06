@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import {
   Landmark,
@@ -9,7 +10,6 @@ import {
   UtensilsCrossed,
   Users,
   Check,
-  Feather,
   Calendar,
 } from "lucide-react";
 import { getPageContent } from "@/lib/content";
@@ -18,7 +18,6 @@ import { formatDateRange } from "@/lib/format";
 import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
 import { FlourishTitle } from "@/components/Section";
-import { PageHero } from "@/components/PageHero";
 
 export const metadata: Metadata = { title: "Seminars" };
 
@@ -69,14 +68,50 @@ export default async function SeminarsPage() {
 
   return (
     <>
-      <PageHero
-        image="/images/seminars-hero.jpg"
-        imageAlt="Tribal professionals learning with laptops"
-        title={c.title}
-        subtitle={<span className="font-display text-xl font-semibold uppercase tracking-wide text-gold-400">{c.subtitle}</span>}
-      >
-        <p className="mt-5 max-w-xl text-cream-100/85">{c.intro}</p>
-      </PageHero>
+      {/* Hero — split: text on cream (left), classroom photo (right) */}
+      <section className="relative overflow-hidden bg-[#FBF3EA]">
+        {/* Desktop: photo bleeds to the right edge, fading into the cream */}
+        <div className="absolute inset-y-0 right-0 hidden w-[60%] lg:block">
+          <Image
+            src="/images/seminars-hero.jpg"
+            alt="Tribal professionals learning with laptops"
+            fill
+            priority
+            sizes="60vw"
+            className="object-cover object-center"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, #FBF3EA 0%, rgba(251,243,234,0.35) 14%, rgba(251,243,234,0) 34%)",
+            }}
+          />
+        </div>
+        <div className="container-page relative py-12 lg:py-20">
+          <div className="max-w-xl">
+            <h1 className="font-display text-5xl font-bold uppercase leading-[1.02] text-navy-600 sm:text-6xl">
+              {c.title}
+            </h1>
+            <p className="mt-3 font-display text-xl font-bold uppercase tracking-wide text-teal-600 sm:text-2xl">
+              {c.subtitle}
+            </p>
+            <p className="mt-5 max-w-md text-lg leading-relaxed text-ink-soft">
+              {c.intro}
+            </p>
+          </div>
+        </div>
+        {/* Mobile: photo below the text */}
+        <div className="relative h-56 w-full sm:h-72 lg:hidden">
+          <Image
+            src="/images/seminars-hero.jpg"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+      </section>
 
       {/* Curriculum */}
       <section className="py-16 sm:py-20">
@@ -174,10 +209,16 @@ export default async function SeminarsPage() {
       </section>
 
       {/* Banner */}
-      <section className="relative overflow-hidden bg-teal-700 text-cream-50">
+      <section className="relative overflow-hidden bg-[#002E33] text-cream-50">
         <div className="container-page relative flex flex-col items-center gap-6 py-12 text-center lg:flex-row lg:justify-between lg:text-left">
           <div className="flex items-center gap-5">
-            <Feather className="animate-float h-14 w-14 shrink-0 text-cream-100/90" strokeWidth={1} />
+            <Image
+              src="/images/cta-feather-v2.png"
+              alt=""
+              width={140}
+              height={127}
+              className="animate-float h-20 w-auto shrink-0 select-none"
+            />
             <div>
               <h2 className="font-display text-2xl font-bold uppercase tracking-wide sm:text-3xl">
                 {c.bannerTitle}
@@ -215,7 +256,7 @@ function CurriculumColumn({
         </div>
         <div className="grid gap-5 sm:grid-cols-2">
           {cards.map((card) => (
-            <div key={card.title} className="group flex flex-col items-center rounded-lg bg-cream-50 p-6 text-center transition-shadow duration-300 hover:shadow-card">
+            <div key={card.title} className="group flex h-full flex-col items-center rounded-lg bg-cream-50 p-6 text-center transition-shadow duration-300 hover:shadow-card">
               <span className={`icon-pop grid h-16 w-16 place-items-center rounded-full text-cream-50 ${iconTint}`}>
                 <card.icon className="h-8 w-8" />
               </span>
@@ -223,6 +264,7 @@ function CurriculumColumn({
                 {card.title}
               </h3>
               <p className="mt-2 text-sm text-ink-soft">{card.body}</p>
+              <span className={`mt-6 block h-1 w-16 rounded-full ${iconTint}`} />
             </div>
           ))}
         </div>

@@ -15,7 +15,7 @@ const links = [
   { href: "/contact", label: "Contact" },
 ];
 
-export function Navbar() {
+export function Navbar({ user }: { user?: { name: string } | null }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -34,16 +34,16 @@ export function Navbar() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-cream-300/70 bg-cream-100/95 backdrop-blur">
-      <nav className="container-page flex h-20 items-center justify-between gap-4">
+    <header className="sticky top-0 z-50 bg-[#FBF3EA]">
+      <nav className="flex h-20 w-full items-center justify-between gap-4 px-4 sm:px-6 xl:h-24 xl:px-10">
         <Logo />
 
-        <div className="hidden items-center gap-0.5 xl:flex">
+        <div className="hidden items-center gap-1 xl:flex">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className={`relative px-3 py-2 font-display text-sm font-semibold uppercase tracking-wide transition-colors ${
+              className={`relative whitespace-nowrap px-3 py-2 font-display text-base font-semibold tracking-normal transition-colors ${
                 isActive(l.href)
                   ? "text-rust-500"
                   : "text-navy-600 hover:text-rust-500"
@@ -51,14 +51,20 @@ export function Navbar() {
             >
               {l.label}
               {isActive(l.href) && (
-                <span className="absolute inset-x-3 -bottom-px h-0.5 bg-rust-500" />
+                <span className="absolute inset-x-3 -bottom-0.5 h-0.5 bg-rust-500" />
               )}
             </Link>
           ))}
         </div>
 
-        <div className="hidden xl:block">
-          <Link href="/register" className="btn-accent px-5 py-2.5">
+        <div className="hidden items-center gap-4 xl:flex">
+          <Link
+            href={user ? "/account" : "/login"}
+            className="whitespace-nowrap font-display text-base font-semibold text-navy-600 transition-colors hover:text-rust-500"
+          >
+            {user ? "My Account" : "Sign In"}
+          </Link>
+          <Link href="/register" className="btn-accent whitespace-nowrap px-6 py-3 text-base">
             Register Now
           </Link>
         </div>
@@ -83,7 +89,7 @@ export function Navbar() {
           onClick={() => setOpen(false)}
         />
         <div
-          className={`fixed inset-x-0 top-20 z-50 border-b border-cream-300 bg-cream-100 px-5 pb-6 pt-3 shadow-soft transition-all duration-300 ${
+          className={`fixed inset-x-0 top-20 z-50 border-b border-cream-300 bg-[#FBF3EA] px-5 pb-6 pt-3 shadow-soft transition-all duration-300 ${
             open ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0"
           }`}
         >
@@ -92,7 +98,7 @@ export function Navbar() {
               <Link
                 key={l.href}
                 href={l.href}
-                className={`rounded-md px-4 py-3 font-display text-base font-semibold uppercase tracking-wide ${
+                className={`rounded-md px-4 py-3 font-display text-base font-semibold tracking-normal ${
                   isActive(l.href)
                     ? "bg-teal-600 text-cream-50"
                     : "text-navy-600 hover:bg-cream-200"
@@ -101,6 +107,12 @@ export function Navbar() {
                 {l.label}
               </Link>
             ))}
+            <Link
+              href={user ? "/account" : "/login"}
+              className="rounded-md px-4 py-3 font-display text-base font-semibold tracking-normal text-navy-600 hover:bg-cream-200"
+            >
+              {user ? "My Account" : "Sign In"}
+            </Link>
             <Link href="/register" className="btn-accent mt-3 w-full">
               Register Now
             </Link>

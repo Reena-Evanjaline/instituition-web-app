@@ -8,6 +8,8 @@ export const defaultContent = {
   site: {
     name: "AI Institute for Native Americans",
     tagline: "Building Stronger Nations Through AI, Financial Skills & Career Success",
+    footerTagline:
+      "Empowering Tribal Nations through education, innovation, and practical skills for a stronger tomorrow.",
     phone: "(555) 123-4567",
     email: "info@AIInstituteForNativeAmericans.com",
     address: "123 Unity Way, Suite 100",

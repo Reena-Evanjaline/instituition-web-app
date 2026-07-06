@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
-import { Phone, Mail, MapPin, Clock, Users, Feather } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Users } from "lucide-react";
 import { getPageContent, getSiteContent } from "@/lib/content";
 import { Reveal } from "@/components/Reveal";
-import { PageHero } from "@/components/PageHero";
+import { WovenBorder } from "@/components/WovenBorder";
 import { ContactForm } from "./ContactForm";
 
 export const metadata: Metadata = { title: "Contact" };
@@ -22,12 +22,23 @@ export default async function ContactPage() {
 
   return (
     <>
-      <PageHero
-        image="/images/contact-hero.jpg"
-        imageAlt="Mountain lake with teepee at sunset"
-        title={c.title}
-        subtitle={c.subtitle}
-      />
+      {/* Hero — exact demo banner (title + subtitle baked into the image) */}
+      <section>
+        <div className="relative aspect-[2048/520] w-full overflow-hidden bg-navy-800">
+          <Image
+            src="/images/contact-hero-banner.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+        <WovenBorder size="lg" />
+        <h1 className="sr-only">
+          {c.title}. {c.subtitle}
+        </h1>
+      </section>
 
       <section className="py-16 sm:py-20">
         <div className="container-page grid items-stretch gap-12 lg:grid-cols-[0.85fr_1.15fr]">
@@ -87,48 +98,68 @@ export default async function ContactPage() {
       </section>
 
       {/* Group training band */}
-      <section className="relative overflow-hidden bg-teal-700 text-cream-50">
-        <div className="grid lg:grid-cols-2">
-          <div className="container-page py-12 lg:py-16" style={{ marginRight: 0 }}>
-            <div className="flex items-start gap-5">
-              <span className="hidden h-16 w-16 shrink-0 place-items-center rounded-full border-2 border-cream-50/60 sm:grid">
-                <Users className="h-8 w-8" />
-              </span>
-              <div>
-                <h2 className="font-display text-2xl font-bold uppercase tracking-wide sm:text-3xl">
-                  Interested In Group Training?
-                </h2>
-                <p className="mt-3 max-w-md text-cream-100/85">
-                  We offer special group rates for Tribal governments, departments, and
-                  organizations. Contact us to get a custom quote for your team.
-                </p>
-                <Link
-                  href={`mailto:${site.email}?subject=Group%20Training`}
-                  className="btn-outline-light mt-6"
-                >
-                  Request Group Information
-                </Link>
+      <section className="relative overflow-hidden bg-[#002E33] text-cream-50">
+        <div className="grid items-stretch lg:grid-cols-2">
+          {/* Text (left) */}
+          <div className="flex items-center">
+            <div className="container-page py-12 lg:py-16" style={{ marginRight: 0 }}>
+              <div className="flex max-w-lg items-start gap-5">
+                <span className="hidden h-16 w-16 shrink-0 place-items-center rounded-full border-2 border-cream-50/60 sm:grid">
+                  <Users className="h-8 w-8" />
+                </span>
+                <div>
+                  <h2 className="font-display text-2xl font-bold uppercase tracking-wide sm:text-3xl">
+                    Interested In Group Training?
+                  </h2>
+                  <p className="mt-3 text-cream-100/85">
+                    We offer special group rates for Tribal governments, departments, and
+                    organizations. Contact us to get a custom quote for your team.
+                  </p>
+                  <Link
+                    href={`mailto:${site.email}?subject=Group%20Training`}
+                    className="btn-outline-light mt-6"
+                  >
+                    Request Group Information
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
-          <div className="img-zoom relative min-h-[220px]">
+          {/* Photo (right) — taller so the full faces show, framed toward the heads */}
+          <div className="relative min-h-[300px]">
             <Image
-              src="/images/contact-group.jpg"
+              src="/images/contact-group-v2.jpg"
               alt="Tribal professionals collaborating"
               fill
               sizes="(max-width:1024px) 100vw, 50vw"
               className="object-cover"
+              style={{ objectPosition: "50% 22%" }}
             />
           </div>
         </div>
       </section>
 
       {/* Thank you */}
-      <section className="bg-cream-200/60 py-12">
-        <div className="container-page flex flex-col items-center gap-5 text-center sm:flex-row sm:text-left">
-          <Feather className="animate-float h-14 w-14 shrink-0 text-teal-600" strokeWidth={1.2} />
+      <section className="relative overflow-hidden bg-[#F5ECE1]">
+        {/* Eagle + mountain silhouette, bottom-right (transparent, blends into the band) */}
+        <Image
+          src="/images/thanks-scenery-v3.png"
+          alt=""
+          width={1212}
+          height={318}
+          aria-hidden
+          className="pointer-events-none absolute bottom-0 right-0 hidden h-28 w-auto select-none lg:block"
+        />
+        <div className="container-page relative flex flex-col items-center gap-5 py-16 text-center sm:flex-row sm:text-left">
+          <Image
+            src="/images/thanks-medallion.png"
+            alt=""
+            width={280}
+            height={266}
+            className="h-20 w-20 shrink-0 select-none"
+          />
           <div>
-            <p className="text-ink-soft">
+            <p className="max-w-xl text-ink-soft">
               Together, we build stronger Nations through knowledge, opportunity, and
               respect for our traditions and future.
             </p>

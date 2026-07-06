@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Users, Target, Landmark, Tag, CheckCircle2, Feather } from "lucide-react";
+import { Users, Target, Landmark, Tag, CheckCircle2 } from "lucide-react";
 import { getPageContent } from "@/lib/content";
 import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
-import { PageHero } from "@/components/PageHero";
+import { WovenBorder } from "@/components/WovenBorder";
 
 export const metadata: Metadata = { title: "About Us" };
 
@@ -46,22 +46,33 @@ export default async function AboutPage() {
   const c = await getPageContent("about");
   return (
     <>
-      <PageHero
-        image="/images/about-hero.jpg"
-        imageAlt="Riders at sunset near teepees"
-        title={c.title}
-        subtitle={c.subtitle}
-      />
+      {/* Hero — exact demo banner (title + subtitle baked into the image) */}
+      <section>
+        <div className="relative aspect-[2048/560] w-full overflow-hidden bg-navy-800">
+          <Image
+            src="/images/about-hero-banner.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+        <WovenBorder size="lg" />
+        <h1 className="sr-only">
+          {c.title}. {c.subtitle}
+        </h1>
+      </section>
 
       {/* Mission */}
       <section className="py-16 sm:py-20">
         <div className="container-page grid items-center gap-12 lg:grid-cols-2">
           <Reveal>
-            <span className="eyebrow">
-              <span className="h-px w-8 bg-rust-500" />
+            <h2 className="font-display text-3xl font-bold uppercase tracking-wide text-navy-600 sm:text-4xl">
               {c.missionTitle}
-            </span>
-            <div className="mt-5 space-y-4 text-lg leading-relaxed text-ink-soft">
+            </h2>
+            <span className="mt-4 block h-0.5 w-12 bg-rust-500" />
+            <div className="mt-6 space-y-4 text-lg leading-relaxed text-ink-soft">
               <p>{c.missionBody1}</p>
               <p>{c.missionBody2}</p>
             </div>
@@ -81,30 +92,36 @@ export default async function AboutPage() {
       </section>
 
       {/* Pillars */}
-      <section className="bg-cream-200/60 py-16 sm:py-20">
-        <div className="container-page grid gap-10 md:grid-cols-3">
-          {pillars.map((p, i) => (
-            <Reveal key={p.title} delay={i * 0.08} variant="up">
-              <div className="group flex flex-col">
-                <div className="flex items-center gap-4">
-                  <span className={`icon-pop grid h-14 w-14 shrink-0 place-items-center rounded-full text-cream-50 ${
+      <section className="py-16 sm:py-20">
+        <div className="container-page">
+          <div className="grid gap-8 rounded-lg border border-cream-300 bg-cream-50 p-8 shadow-card md:grid-cols-3 md:gap-0 lg:p-10">
+            {pillars.map((p, i) => (
+              <Reveal key={p.title} delay={i * 0.08} variant="up">
+                <div
+                  className={`group flex h-full flex-col ${
+                    i > 0 ? "md:border-l md:border-cream-300 md:pl-8" : ""
+                  } ${i < pillars.length - 1 ? "md:pr-8" : ""}`}
+                >
+                  <div className="flex items-center gap-4">
+                  <span className={`icon-pop grid h-16 w-16 shrink-0 place-items-center rounded-full text-cream-50 ${
                     i === 1 ? "bg-rust-500" : "bg-teal-600"
                   }`}>
-                    <p.icon className="h-7 w-7" />
+                    <p.icon className="h-8 w-8" />
                   </span>
-                  <h3 className="font-display text-xl font-bold uppercase tracking-wide text-navy-600">
+                  <h3 className="font-display text-2xl font-bold uppercase tracking-wide text-navy-600">
                     {p.title}
                   </h3>
                 </div>
-                <span className="mt-4 h-0.5 w-12 bg-rust-500" />
-                <div className="mt-4 space-y-3 text-ink-soft">
+                <span className="mt-4 h-0.5 w-14 bg-rust-500" />
+                <div className="mt-4 space-y-3 text-lg text-ink-soft">
                   {p.body.map((para) => (
                     <p key={para}>{para}</p>
                   ))}
                 </div>
-              </div>
-            </Reveal>
-          ))}
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -113,20 +130,20 @@ export default async function AboutPage() {
         <div className="container-page">
           <Reveal>
             <div className="grid items-center gap-8 rounded-lg border border-cream-300 bg-cream-50 p-8 shadow-card lg:grid-cols-[auto_1fr_1fr] lg:gap-12 lg:p-12">
-              <span className="grid h-24 w-24 place-items-center rounded-full bg-teal-600 text-cream-50">
-                <Tag className="h-11 w-11" />
+              <span className="grid h-28 w-28 place-items-center rounded-full bg-teal-600 text-cream-50">
+                <Tag className="h-14 w-14" />
               </span>
               <div>
-                <p className="font-display text-sm font-bold uppercase tracking-wide text-navy-600">
+                <p className="font-display text-base font-bold uppercase tracking-wide text-navy-600">
                   Program Value
                 </p>
-                <p className="font-display text-5xl font-bold text-rust-500">
+                <p className="font-display text-6xl font-bold text-rust-500">
                   <CountUp value={1595} prefix="$" />
-                  <span className="ml-2 align-middle font-display text-base font-semibold text-navy-600">
+                  <span className="ml-2 align-middle font-display text-lg font-semibold uppercase tracking-wide text-navy-600">
                     Per Participant
                   </span>
                 </p>
-                <p className="mt-2 text-sm text-ink-soft">
+                <p className="mt-2 text-base text-ink-soft">
                   Participants gain practical financial skills, increased efficiency,
                   and tools that improve day-to-day operations—along with a certificate
                   of completion.
@@ -135,8 +152,8 @@ export default async function AboutPage() {
               <ul className="space-y-3">
                 {includes.map((item) => (
                   <li key={item} className="flex items-center gap-3">
-                    <CheckCircle2 className="h-5 w-5 shrink-0 text-teal-600" />
-                    <span className="text-ink">{item}</span>
+                    <CheckCircle2 className="h-6 w-6 shrink-0 text-teal-600" />
+                    <span className="text-lg text-ink">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -148,13 +165,20 @@ export default async function AboutPage() {
       {/* Banner */}
       <section className="pb-16 sm:pb-20">
         <div className="container-page">
-          <div className="flex flex-col items-center gap-5 rounded-lg bg-teal-700 px-8 py-10 text-cream-50 sm:flex-row sm:gap-8 sm:py-12">
-            <Feather className="animate-float h-16 w-16 shrink-0 text-cream-100/90" strokeWidth={1} />
-            <div>
-              <h2 className="font-display text-2xl font-bold sm:text-3xl">
+          <div className="flex flex-col items-center gap-5 overflow-hidden rounded-lg bg-[#002E33] px-8 py-10 text-cream-50 sm:flex-row sm:gap-8 sm:py-12">
+            <Image
+              src="/images/cta-feather-v2.png"
+              alt=""
+              width={200}
+              height={182}
+              className="animate-float h-24 w-auto shrink-0 select-none"
+            />
+            <div className="text-center sm:text-left">
+              <h2 className="font-display text-3xl font-bold sm:text-4xl">
                 {c.bannerTitle}
               </h2>
-              <p className="mt-2 text-cream-100/85">{c.bannerSubtitle}</p>
+              <span className="mx-auto mt-3 block h-0.5 w-14 bg-rust-500 sm:mx-0" />
+              <p className="mt-3 text-cream-100/90">{c.bannerSubtitle}</p>
             </div>
           </div>
         </div>

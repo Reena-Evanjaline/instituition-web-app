@@ -18,28 +18,13 @@ export async function Footer() {
   const site = await getSiteContent();
   return (
     <footer className="mt-0">
-      <div className="bg-navy-700 text-cream-100">
+      <div className="bg-[#001733] text-cream-100">
         <div className="container-page grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <Logo variant="light" />
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-cream-200/70">
-              {site.tagline}
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-white">
+              {site.footerTagline}
             </p>
-            <svg
-              viewBox="0 0 220 16"
-              className="mt-5 h-4 w-52"
-              fill="none"
-              aria-hidden="true"
-            >
-              <path d="M2 8 H80" className="stroke-gold-500" strokeWidth="2" strokeLinecap="round" />
-              <path
-                d="M80 8 q7 -7 14 0 t14 0 t14 0 t14 0"
-                className="stroke-teal-400"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-              <path d="M148 8 H218" className="stroke-gold-500" strokeWidth="2" strokeLinecap="round" />
-            </svg>
             <div className="mt-6 flex gap-3">
               {[Facebook, Linkedin, Youtube].map((Icon, i) => (
                 <a
@@ -54,7 +39,7 @@ export async function Footer() {
             </div>
           </div>
 
-          <div>
+          <div className="lg:border-l lg:border-white/10 lg:pl-10">
             <h4 className="font-display text-sm font-bold uppercase tracking-[0.14em] text-cream-50">
               Quick Links
             </h4>
@@ -63,7 +48,7 @@ export async function Footer() {
                 <li key={n.href}>
                   <Link
                     href={n.href}
-                    className="text-cream-200/75 transition-colors hover:text-gold-400"
+                    className="text-white transition-colors hover:text-gold-400"
                   >
                     {n.label}
                   </Link>
@@ -72,11 +57,11 @@ export async function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="lg:border-l lg:border-white/10 lg:pl-10">
             <h4 className="font-display text-sm font-bold uppercase tracking-[0.14em] text-cream-50">
               Contact Us
             </h4>
-            <ul className="mt-5 space-y-3.5 text-sm text-cream-200/80">
+            <ul className="mt-5 space-y-3.5 text-sm text-white">
               <li className="flex items-center gap-3">
                 <Phone className="h-4 w-4 shrink-0 text-gold-400" />
                 <a href={`tel:${site.phone}`} className="hover:text-gold-400">
@@ -100,11 +85,11 @@ export async function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="lg:border-l lg:border-white/10 lg:pl-10">
             <h4 className="font-display text-sm font-bold uppercase tracking-[0.14em] text-cream-50">
               Stay Connected
             </h4>
-            <p className="mt-5 text-sm text-cream-200/75">
+            <p className="mt-5 text-sm text-white">
               Sign up for updates on upcoming seminars and resources.
             </p>
             <form className="mt-4 space-y-3">

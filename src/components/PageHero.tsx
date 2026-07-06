@@ -7,6 +7,7 @@ export function PageHero({
   image,
   imageAlt = "",
   topWeave = false,
+  objectPosition = "50% 50%",
   children,
 }: {
   title: React.ReactNode;
@@ -14,33 +15,37 @@ export function PageHero({
   image: string;
   imageAlt?: string;
   topWeave?: boolean;
+  /** Which part of the photo to keep in the wide frame (CSS object-position). */
+  objectPosition?: string;
   children?: React.ReactNode;
 }) {
   return (
     <section>
       {topWeave && <WovenBorder />}
-      <div className="relative overflow-hidden bg-navy-800">
-        {/* Photo sits in the right half and shows the full scene (no full-bleed crop). */}
-        <div className="absolute inset-y-0 right-0 hidden w-1/2 md:block">
+      <div className="relative flex min-h-[360px] items-center overflow-hidden bg-navy-800 sm:min-h-0 sm:aspect-[1024/320]">
+        {/* Full-width scene photo (matches the demo's edge-to-edge hero). */}
+        <div className="absolute inset-0">
           <Image
             src={image}
             alt={imageAlt}
             fill
             priority
-            sizes="50vw"
+            sizes="100vw"
             className="object-cover"
+            style={{ objectPosition }}
           />
-          {/* Soft seam: fade the photo's left edge into the dark panel. */}
-          <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-navy-800 to-transparent" />
+          {/* Light left-weighted wash — keeps the white headline legible while
+              letting the sunset read vividly (like the demo). */}
+          <div className="absolute inset-0 bg-gradient-to-r from-navy-900/75 via-navy-900/30 to-transparent" />
         </div>
 
-        <div className="container-page relative py-20 sm:py-28">
-          <div className="max-w-xl">
-            <h1 className="font-display text-4xl font-bold uppercase leading-[1.05] text-cream-50 sm:text-5xl lg:text-6xl">
+        <div className="container-page relative w-full py-14">
+          <div className="max-w-2xl">
+            <h1 className="font-display text-5xl font-bold uppercase leading-[1.02] text-cream-50 sm:text-6xl lg:text-7xl">
               {title}
             </h1>
             {subtitle && (
-              <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream-100/90">
+              <p className="mt-6 max-w-xl text-lg font-medium leading-relaxed text-white sm:text-xl">
                 {subtitle}
               </p>
             )}

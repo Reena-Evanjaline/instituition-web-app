@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useInView } from "framer-motion";
+import { useInView, useReducedMotion } from "framer-motion";
 
 /**
  * Counts up to `value` when scrolled into view. `format` renders the number.
@@ -21,10 +21,15 @@ export function CountUp({
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
+  const reduce = useReducedMotion();
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
     if (!inView) return;
+    if (reduce) {
+      setDisplay(value);
+      return;
+    }
     let raf = 0;
     let start: number | null = null;
     const step = (t: number) => {
@@ -37,7 +42,7 @@ export function CountUp({
     };
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-  }, [inView, value, duration]);
+  }, [inView, value, duration, reduce]);
 
   return (
     <span ref={ref} className={className}>

@@ -21,6 +21,18 @@ model AdminUser {
   updatedAt    DateTime @updatedAt
 }
 
+/// Public site accounts (seminar participants). Separate from AdminUser.
+model User {
+  id               String    @id @default(cuid())
+  email            String    @unique
+  name             String
+  passwordHash     String
+  resetToken       String?   @unique
+  resetTokenExpiry DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+}
+
 /// A 2-day seminar session that people can register for.
 model Seminar {
   id            String         @id @default(cuid())
