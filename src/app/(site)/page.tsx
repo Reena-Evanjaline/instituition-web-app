@@ -9,7 +9,7 @@ import {
   BookOpen,
   Award,
   ArrowRight,
-  Gauge,
+  DollarSign,
 } from "lucide-react";
 import { getPageContent } from "@/lib/content";
 import { getUpcomingSeminars } from "@/lib/seminars";
@@ -22,7 +22,7 @@ import { WovenBorder } from "@/components/WovenBorder";
 
 const benefits = [
   {
-    icon: Gauge,
+    icon: DollarSign,
     color: "bg-teal-600",
     title: "Improve Efficiency",
     body: "Save time and reduce administrative burdens with AI tools.",
@@ -153,7 +153,12 @@ export default async function HomePage() {
           <FlourishTitle>{c.benefitsTitle}</FlourishTitle>
           <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {benefits.map((b, i) => (
-              <Reveal key={b.title} delay={i * 0.08} variant="blur">
+              <Reveal
+                key={b.title}
+                delay={i * 0.08}
+                variant="blur"
+                className={i > 0 ? "lg:border-l lg:border-cream-300" : ""}
+              >
                 <div className="group flex cursor-default flex-col items-center text-center">
                   <span className={`icon-pop grid h-20 w-20 place-items-center rounded-full text-cream-50 shadow-card ${b.color}`}>
                     <b.icon className="h-10 w-10" />
