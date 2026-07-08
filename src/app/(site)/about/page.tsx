@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Users, Target, Landmark, Tag, CheckCircle2 } from "lucide-react";
+import { Users, Target, Landmark, Tag, Check } from "lucide-react";
 import { getPageContent } from "@/lib/content";
 import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
@@ -156,7 +156,9 @@ export default async function AboutPage() {
               <ul className="space-y-3">
                 {includes.map((item) => (
                   <li key={item} className="flex items-center gap-3">
-                    <CheckCircle2 className="h-6 w-6 shrink-0 text-teal-600" />
+                    <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-teal-600 text-cream-50">
+                      <Check className="h-4 w-4" strokeWidth={3} />
+                    </span>
                     <span className="text-lg text-ink">{item}</span>
                   </li>
                 ))}
