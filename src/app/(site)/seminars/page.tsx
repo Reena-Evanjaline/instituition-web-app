@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import {
   Landmark,
   ReceiptText,
-  TrendingUp,
+  ChartColumnIncreasing,
   FileUser,
   DollarSign,
   UtensilsCrossed,
@@ -40,7 +40,7 @@ const day1 = [
 
 const day2 = [
   {
-    icon: TrendingUp,
+    icon: ChartColumnIncreasing,
     title: "AI-Assisted IDC Rate Proposals",
     body: "Use AI to write stronger IDC grant narratives, build accurate budgets, and increase success in securing funding for your Nation.",
   },
@@ -260,7 +260,7 @@ function CurriculumColumn({
         </div>
         <div className="grid gap-5 sm:grid-cols-2">
           {cards.map((card) => (
-            <div key={card.title} className="group flex h-full flex-col items-center rounded-lg bg-cream-50 p-6 text-center transition-shadow duration-300 hover:shadow-card">
+            <div key={card.title} className="group flex h-full flex-col items-center rounded-lg border border-cream-300 bg-cream-50 p-6 text-center transition-shadow duration-300 hover:shadow-card">
               <span className={`icon-pop grid h-16 w-16 place-items-center rounded-full text-cream-50 ${iconTint}`}>
                 <card.icon className="h-8 w-8" />
               </span>
