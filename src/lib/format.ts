@@ -12,8 +12,8 @@ export function formatCurrency(cents: number): string {
  */
 export function formatSeats(seatsLeft: number): string {
   if (seatsLeft <= 0) return "Waitlist";
-  if (seatsLeft >= 50) return "50 or more";
-  return `${seatsLeft} left`;
+  if (seatsLeft >= 50) return "50+ Seats Left";
+  return `${seatsLeft} Seats Left`;
 }
 
 // Seminar dates are stored as UTC midnight, so we format in UTC everywhere to

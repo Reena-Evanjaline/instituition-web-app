@@ -11,6 +11,7 @@ import {
   Users,
   Check,
   Calendar,
+  Info,
 } from "lucide-react";
 import { getPageContent } from "@/lib/content";
 import { getUpcomingSeminars } from "@/lib/seminars";
@@ -139,13 +140,13 @@ export default async function SeminarsPage() {
                 Upcoming Seminar Dates
               </h2>
             </div>
-            <div className="mt-5 flex flex-1 flex-col overflow-hidden rounded-lg border border-cream-300 bg-cream-50 shadow-card">
+            <div className="mt-5 flex flex-col overflow-hidden rounded-lg border border-cream-300 bg-cream-50 shadow-card">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-teal-700 text-left font-display text-xs uppercase tracking-wide text-cream-50">
                     <th className="px-4 py-3">Date</th>
                     <th className="px-4 py-3">Location</th>
-                    <th className="px-4 py-3">Seats</th>
+                    <th className="px-4 py-3">Seats Available</th>
                     <th className="px-4 py-3" />
                   </tr>
                 </thead>
@@ -171,33 +172,42 @@ export default async function SeminarsPage() {
                   ))}
                 </tbody>
               </table>
-              <p className="mt-auto flex items-center gap-2 border-t border-cream-200 px-4 py-3.5 text-sm font-semibold text-ink-soft">
-                <Calendar className="h-4 w-4" /> New seminars every two weeks!
-              </p>
             </div>
+            <Link
+              href="/register"
+              className="btn-outline mt-6 w-full justify-center"
+            >
+              View All Dates
+            </Link>
+            <p className="mt-4 flex items-center justify-center gap-2 text-sm font-semibold text-ink-soft">
+              <Calendar className="h-4 w-4" /> New seminars every two weeks!
+            </p>
           </Reveal>
 
           {/* Info box */}
           <Reveal delay={0.1} className="flex h-full flex-col">
             <div className="flex items-center gap-3">
+              <Info className="h-6 w-6 text-teal-600" />
               <h2 className="font-display text-2xl font-bold uppercase tracking-wide text-navy-600">
                 Seminar Information
               </h2>
             </div>
             <div className="mt-5 flex flex-1 flex-col gap-4">
-              <div className="flex items-center gap-4 rounded-lg border border-cream-300 bg-cream-50 p-5 shadow-card">
-                <span className="grid h-12 w-12 place-items-center rounded-full bg-teal-600 text-cream-50">
-                  <DollarSign className="h-6 w-6" />
+              <div className="flex items-center gap-5 rounded-lg border border-cream-300 bg-cream-50 p-5 shadow-card">
+                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-teal-600 text-cream-50">
+                  <DollarSign className="h-7 w-7" />
                 </span>
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wide text-ink-soft">
                     Investment
                   </p>
-                  <p className="font-display text-3xl font-bold text-navy-600">
-                    <CountUp value={1595} prefix="$" />{" "}
-                    <span className="text-sm font-semibold text-ink-soft">Per Participant</span>
+                  <p className="font-display text-4xl font-bold text-teal-700">
+                    <CountUp value={1595} prefix="$" />
                   </p>
-                  <p className="text-xs text-ink-soft">Group rates available</p>
+                </div>
+                <div className="text-sm text-ink-soft">
+                  <p className="font-semibold text-navy-600">Per Participant</p>
+                  <p>Group rates available</p>
                 </div>
               </div>
 
@@ -289,9 +299,7 @@ function InfoList({
   return (
     <div className="rounded-lg border border-cream-300 bg-cream-50 p-5 shadow-card">
       <div className="flex items-start gap-4">
-        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-navy-600 text-cream-50">
-          <Icon className="h-5 w-5" />
-        </span>
+        <Icon className="h-9 w-9 shrink-0 text-teal-600" strokeWidth={1.75} />
         <div>
           <p className="font-display text-sm font-bold uppercase tracking-wide text-navy-600">
             {title}
