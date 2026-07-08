@@ -157,7 +157,7 @@ export default async function HomePage() {
                 key={b.title}
                 delay={i * 0.08}
                 variant="blur"
-                className={i > 0 ? "lg:border-l lg:border-cream-300" : ""}
+                className={`lg:px-6 ${i > 0 ? "lg:border-l-2 lg:border-cream-300" : ""}`}
               >
                 <div className="group flex cursor-default flex-col items-center text-center">
                   <span className={`icon-pop grid h-20 w-20 place-items-center rounded-full text-cream-50 shadow-card ${b.color}`}>
