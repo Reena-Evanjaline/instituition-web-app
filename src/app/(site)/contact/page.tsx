@@ -44,32 +44,32 @@ export default async function ContactPage() {
         </h1>
       </section>
 
-      <section className="py-16 sm:py-20">
-        <div className="container-page grid items-stretch gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+      <section className="py-10 sm:py-12">
+        <div className="container-page grid items-stretch gap-10 lg:grid-cols-[0.85fr_1.15fr]">
           {/* Get in touch */}
           <Reveal className="flex h-full flex-col">
-            <div className="flex items-center gap-3">
-              <span className="grid h-12 w-12 place-items-center rounded-full bg-teal-600 text-cream-50">
-                <Mail className="h-6 w-6" />
+            <div className="flex items-center gap-4">
+              <span className="grid h-14 w-14 place-items-center rounded-full bg-teal-600 text-cream-50">
+                <Mail className="h-7 w-7" />
               </span>
-              <h2 className="font-display text-2xl font-bold uppercase tracking-wide text-navy-600">
+              <h2 className="font-display text-3xl font-bold uppercase tracking-wide text-navy-600">
                 Get In Touch
               </h2>
             </div>
-            <p className="mt-4 text-ink-soft">{c.getInTouchBody}</p>
+            <p className="mt-4 text-lg text-ink-soft">{c.getInTouchBody}</p>
 
-            <div className="mt-8 flex flex-1 flex-col justify-between gap-6">
+            <div className="mt-7 flex flex-1 flex-col justify-between gap-6">
               {methods.map((m) => {
                 const body = (
                   <div className="flex items-start gap-4">
-                    <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-teal-600 text-cream-50">
-                      <m.icon className="h-6 w-6" />
+                    <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-teal-600 text-cream-50">
+                      <m.icon className="h-7 w-7" />
                     </span>
                     <div>
-                      <p className="font-display text-sm font-bold uppercase tracking-wide text-navy-600">
+                      <p className="font-display text-base font-bold uppercase tracking-wide text-navy-600">
                         {m.label}
                       </p>
-                      <p className="whitespace-pre-line text-ink-soft">{m.value}</p>
+                      <p className="whitespace-pre-line text-lg text-ink-soft">{m.value}</p>
                     </div>
                   </div>
                 );
@@ -86,11 +86,11 @@ export default async function ContactPage() {
 
           {/* Form */}
           <Reveal delay={0.1}>
-            <div className="flex items-center gap-3">
-              <span className="grid h-12 w-12 place-items-center rounded-full bg-teal-600 text-cream-50">
-                <Users className="h-6 w-6" />
+            <div className="flex items-center gap-4">
+              <span className="grid h-14 w-14 place-items-center rounded-full bg-teal-600 text-cream-50">
+                <Users className="h-7 w-7" />
               </span>
-              <h2 className="font-display text-2xl font-bold uppercase tracking-wide text-navy-600">
+              <h2 className="font-display text-3xl font-bold uppercase tracking-wide text-navy-600">
                 Send Us A Message
               </h2>
             </div>
@@ -106,7 +106,7 @@ export default async function ContactPage() {
         <div className="grid items-stretch lg:grid-cols-2">
           {/* Text (left) */}
           <div className="flex items-center">
-            <div className="container-page py-12 lg:py-16" style={{ marginRight: 0 }}>
+            <div className="container-page py-10 lg:py-12" style={{ marginRight: 0 }}>
               <div className="flex max-w-lg items-start gap-5">
                 <span className="hidden h-16 w-16 shrink-0 place-items-center rounded-full border-2 border-cream-50/60 sm:grid">
                   <Users className="h-8 w-8" />
@@ -154,7 +154,7 @@ export default async function ContactPage() {
           aria-hidden
           className="pointer-events-none absolute bottom-0 right-0 hidden h-28 w-auto select-none lg:block"
         />
-        <div className="container-page relative flex flex-col items-center gap-5 py-16 text-center sm:flex-row sm:text-left">
+        <div className="container-page relative flex flex-col items-center gap-5 py-10 text-center sm:flex-row sm:text-left">
           <Image
             src="/images/thanks-medallion.png"
             alt=""

@@ -69,8 +69,8 @@ export default async function AboutPage() {
       </section>
 
       {/* Mission */}
-      <section className="py-16 sm:py-20">
-        <div className="container-page grid items-center gap-12 lg:grid-cols-2">
+      <section className="pt-12 pb-10">
+        <div className="grid w-full items-center gap-12 px-5 sm:px-10 xl:px-14 lg:grid-cols-2">
           <Reveal>
             <h2 className="font-display text-3xl font-bold uppercase tracking-wide text-navy-600 sm:text-4xl">
               {c.missionTitle}
@@ -96,9 +96,9 @@ export default async function AboutPage() {
       </section>
 
       {/* Pillars */}
-      <section className="py-16 sm:py-20">
-        <div className="container-page">
-          <div className="grid gap-8 rounded-lg border border-cream-300 bg-cream-50 p-8 shadow-card md:grid-cols-3 md:gap-0 lg:p-10">
+      <section className="pb-8">
+        <div className="w-full px-5 sm:px-10 xl:px-14">
+          <div className="grid gap-8 rounded-md bg-cream-100 p-8 md:grid-cols-3 md:gap-0 lg:p-10">
             {pillars.map((p, i) => (
               <Reveal key={p.title} delay={i * 0.08} variant="up">
                 <div
@@ -107,21 +107,23 @@ export default async function AboutPage() {
                   } ${i < pillars.length - 1 ? "md:pr-8" : ""}`}
                 >
                   <div className="flex items-center gap-4">
-                  <span className={`icon-pop grid h-16 w-16 shrink-0 place-items-center rounded-full text-cream-50 ${
-                    i === 1 ? "bg-rust-500" : "bg-teal-600"
-                  }`}>
-                    <p.icon className="h-8 w-8" />
-                  </span>
-                  <h3 className="font-display text-2xl font-bold uppercase tracking-wide text-navy-600">
-                    {p.title}
-                  </h3>
-                </div>
-                <span className="mt-4 h-0.5 w-14 bg-rust-500" />
-                <div className="mt-4 space-y-3 text-lg text-ink-soft">
-                  {p.body.map((para) => (
-                    <p key={para}>{para}</p>
-                  ))}
-                </div>
+                    <span className={`icon-pop grid h-16 w-16 shrink-0 place-items-center rounded-full text-cream-50 ${
+                      i === 1 ? "bg-rust-500" : "bg-teal-600"
+                    }`}>
+                      <p.icon className="h-8 w-8" />
+                    </span>
+                    <div>
+                      <h3 className="font-display text-2xl uppercase tracking-wide text-navy-600">
+                        {p.title}
+                      </h3>
+                      <span className="mt-2 block h-0.5 w-12 bg-rust-500" />
+                    </div>
+                  </div>
+                  <div className="mt-5 space-y-3 text-base text-ink-soft">
+                    {p.body.map((para) => (
+                      <p key={para}>{para}</p>
+                    ))}
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -130,36 +132,36 @@ export default async function AboutPage() {
       </section>
 
       {/* Program value */}
-      <section className="py-16 sm:py-20">
-        <div className="container-page">
+      <section className="pb-10">
+        <div className="w-full px-5 sm:px-10 xl:px-14">
           <Reveal>
-            <div className="grid items-center gap-8 rounded-lg border border-cream-300 bg-cream-50 p-8 shadow-card lg:grid-cols-[auto_1fr_1fr] lg:gap-12 lg:p-12">
+            <div className="grid items-center gap-8 rounded-md bg-cream-100 p-8 lg:grid-cols-[auto_1.2fr_1fr] lg:gap-10 lg:p-10">
               <span className="grid h-28 w-28 place-items-center rounded-full bg-teal-600 text-cream-50">
                 <Tag className="h-14 w-14" />
               </span>
               <div>
-                <p className="font-display text-base font-bold uppercase tracking-wide text-navy-600">
+                <p className="font-display text-2xl uppercase tracking-wide text-navy-600">
                   Program Value
                 </p>
-                <p className="font-display text-6xl font-bold text-rust-500">
+                <p className="mt-1 font-display text-5xl text-rust-500">
                   <CountUp value={1595} prefix="$" />
-                  <span className="ml-2 align-middle font-display text-lg font-semibold uppercase tracking-wide text-navy-600">
+                  <span className="ml-3 align-middle font-display text-lg uppercase tracking-wide text-navy-600">
                     Per Participant
                   </span>
                 </p>
-                <p className="mt-2 text-base text-ink-soft">
+                <p className="mt-3 text-sm leading-relaxed text-ink-soft">
                   Participants gain practical financial skills, increased efficiency,
                   and tools that improve day-to-day operations—along with a certificate
                   of completion.
                 </p>
               </div>
-              <ul className="space-y-3">
+              <ul className="space-y-3 lg:border-l lg:border-cream-300 lg:pl-10">
                 {includes.map((item) => (
                   <li key={item} className="flex items-center gap-3">
                     <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-teal-600 text-cream-50">
                       <Check className="h-4 w-4" strokeWidth={3} />
                     </span>
-                    <span className="text-lg text-ink">{item}</span>
+                    <span className="text-base text-ink">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -168,27 +170,26 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {/* Banner */}
-      <section className="pb-16 sm:pb-20">
-        <div className="container-page">
-          <div className="flex flex-col items-center gap-5 overflow-hidden rounded-lg bg-[#002E33] px-8 py-10 text-cream-50 sm:flex-row sm:gap-8 sm:py-12">
-            <Image
-              src="/images/cta-feather-v2.png"
-              alt=""
-              width={200}
-              height={182}
-              className="animate-float h-24 w-auto shrink-0 select-none"
-            />
-            <div className="text-center sm:text-left">
-              <h2 className="font-display text-3xl font-bold sm:text-4xl">
-                {c.bannerTitle}
-              </h2>
-              <span className="mx-auto mt-3 block h-0.5 w-14 bg-rust-500 sm:mx-0" />
-              <p className="mt-3 text-cream-100/90">{c.bannerSubtitle}</p>
-            </div>
+      {/* Banner — full-bleed band with centered copy, like the demo */}
+      <section className="bg-[#00262c] text-cream-50">
+        <div className="relative flex flex-col items-center gap-5 px-5 py-10 sm:flex-row sm:gap-8 sm:px-10">
+          <Image
+            src="/images/cta-feather-v2.png"
+            alt=""
+            width={200}
+            height={182}
+            className="animate-float h-24 w-auto shrink-0 select-none sm:h-28"
+          />
+          <div className="flex-1 text-center">
+            <h2 className="font-display text-3xl sm:text-4xl">
+              {c.bannerTitle}
+            </h2>
+            <span className="mx-auto mt-3 block h-0.5 w-14 bg-rust-500" />
+            <p className="mt-3 text-lg text-cream-100/90">{c.bannerSubtitle}</p>
           </div>
         </div>
       </section>
+      <WovenBorder size="lg" />
     </>
   );
 }

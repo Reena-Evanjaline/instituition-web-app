@@ -1,26 +1,41 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Anton } from "next/font/google";
+
+/** Tall condensed display face for the wordmark, matching the brand lockup. */
+const wordmark = Anton({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-logo",
+});
 
 export function Logo({
   className = "",
   variant = "dark",
   priority = false,
+  size = "md",
 }: {
   className?: string;
   variant?: "dark" | "light";
   /** Only the header logo is above the fold — leave false for the footer. */
   priority?: boolean;
+  /** "md" is the full header lockup; "sm" is the compact footer lockup. */
+  size?: "md" | "sm";
 }) {
   const light = variant === "light";
+  const sm = size === "sm";
   return (
-    <Link href="/" className={`group flex items-center gap-3.5 ${className}`}>
+    <Link
+      href="/"
+      className={`group flex items-center ${sm ? "gap-2.5" : "gap-3.5"} ${wordmark.variable} ${className}`}
+    >
       <span
         className={`relative grid shrink-0 place-items-center overflow-hidden rounded-full transition-transform group-hover:scale-105 ${
-          light ? "h-12 w-12 bg-cream-50 p-0.5 sm:h-[4.5rem] sm:w-[4.5rem]" : "h-12 w-12 sm:h-[4.5rem] sm:w-[4.5rem]"
-        }`}
+          sm ? "h-14 w-14" : "h-16 w-16 sm:h-20 sm:w-20 xl:h-[8.25rem] xl:w-[8.25rem]"
+        } ${light && !sm ? "bg-cream-50 p-0.5" : ""}`}
       >
         <Image
-          src="/images/logo-emblem-v2.png"
+          src={sm ? "/images/logo-emblem-footer.png" : "/images/logo-emblem-v2.png"}
           alt=""
           width={128}
           height={128}
@@ -28,31 +43,40 @@ export function Logo({
           priority={priority}
         />
       </span>
-      <span className="leading-none">
+      {/* Width is set by the AI INSTITUTE line alone; the NATIVE AMERICANS row is
+          absolutely positioned across that width so it stays flush at both edges
+          without ever stretching the top line. */}
+      <span
+        className={`relative block font-[family-name:var(--font-logo)] leading-none ${
+          sm ? "pb-[0.66rem]" : "pb-[0.9rem] sm:pb-[1.15rem] xl:pb-[1.9rem]"
+        }`}
+      >
         <span
-          className={`block whitespace-nowrap font-display text-xl font-bold uppercase tracking-tight sm:text-3xl ${
-            light ? "text-cream-50" : "text-navy-600"
-          }`}
+          className={`flex gap-[0.15em] whitespace-nowrap uppercase leading-none tracking-[0.02em] ${
+            sm ? "text-[1.05rem]" : "text-[1.4rem] sm:text-[1.75rem] xl:text-[3rem]"
+          } ${light ? "text-cream-50" : "text-navy-600"}`}
         >
-          AI Institute
+          <span>AI</span>
+          <span>Institute</span>
         </span>
-        <span className="my-1 flex items-center gap-2">
-          <span className="h-px w-4 bg-rust-500" />
+        <span className={`flex items-center ${sm ? "my-1 gap-1.5" : "my-2 gap-2.5"}`}>
+          <span className={`flex-1 rounded-full bg-rust-500 ${sm ? "h-px" : "h-0.5"}`} />
           <span
-            className={`font-display text-[11px] font-semibold uppercase tracking-[0.25em] sm:text-xs ${
-              light ? "text-cream-200" : "text-ink-soft"
-            }`}
+            className={`uppercase leading-none tracking-[0.2em] ${
+              sm ? "text-[0.55rem]" : "text-[0.6rem] sm:text-[0.8rem] xl:text-[1.05rem]"
+            } ${light ? "text-cream-200" : "text-navy-600"}`}
           >
             For
           </span>
-          <span className="h-px w-4 bg-rust-500" />
+          <span className={`flex-1 rounded-full bg-rust-500 ${sm ? "h-px" : "h-0.5"}`} />
         </span>
         <span
-          className={`block whitespace-nowrap font-display text-sm font-bold uppercase tracking-[0.14em] sm:text-xl ${
-            light ? "text-teal-100" : "text-teal-600"
-          }`}
+          className={`absolute inset-x-0 bottom-0 flex justify-between gap-[0.35em] whitespace-nowrap uppercase leading-none tracking-[0.02em] ${
+            sm ? "text-[0.66rem]" : "text-[0.9rem] sm:text-[1.15rem] xl:text-[1.9rem]"
+          } ${light ? (sm ? "text-cream-50" : "text-teal-100") : "text-teal-600"}`}
         >
-          Native Americans
+          <span>Native</span>
+          <span>Americans</span>
         </span>
       </span>
     </Link>

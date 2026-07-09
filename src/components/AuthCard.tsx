@@ -10,7 +10,7 @@ export function AuthCard({
   footer?: React.ReactNode;
 }) {
   return (
-    <section className="bg-[#FBF3EA] py-16 sm:py-24">
+    <section className="bg-[#FBF3EA] py-10 sm:py-14">
       <div className="container-page">
         <div className="mx-auto w-full max-w-md">
           <div className="rounded-lg border border-cream-300 bg-cream-50 p-8 shadow-card sm:p-10">

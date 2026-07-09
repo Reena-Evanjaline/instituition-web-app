@@ -98,7 +98,7 @@ export default async function CausesPage() {
       </section>
 
       {/* Three causes */}
-      <section className="py-16 sm:py-20">
+      <section className="py-10 sm:py-12">
         <div className="container-page">
           <FlourishTitle>Three Ways To Make A Difference</FlourishTitle>
           <p className="mx-auto mt-5 max-w-2xl text-center text-ink-soft">
@@ -108,7 +108,7 @@ export default async function CausesPage() {
             generations to come.
           </p>
 
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
             {causes.map((cause, i) => (
               <Reveal key={cause.title} delay={i * 0.08} variant="up">
                 <div className="group flex h-full flex-col overflow-hidden rounded-lg border border-cream-300 bg-cream-50 shadow-card transition-shadow duration-300 hover:shadow-soft">
@@ -158,24 +158,24 @@ export default async function CausesPage() {
       </section>
 
       {/* Contribution matters */}
-      <section className="py-16 sm:py-20">
+      <section className="py-6 sm:py-8">
         <div className="container-page">
-          <div className="grid gap-10 rounded-lg border border-cream-300 bg-cream-50 p-8 shadow-card lg:grid-cols-2 lg:gap-12 lg:p-10">
+          <div className="grid gap-8 rounded-lg border border-cream-300 bg-cream-50 p-7 shadow-card lg:grid-cols-2 lg:gap-10 lg:p-8">
           <Reveal>
             <div className="flex gap-5">
-              <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-rust-500 text-cream-50">
-                <Feather className="h-8 w-8" strokeWidth={1.5} />
+              <span className="grid h-20 w-20 shrink-0 place-items-center rounded-full bg-rust-500 text-cream-50">
+                <Feather className="h-10 w-10" strokeWidth={1.5} />
               </span>
               <div>
-                <h3 className="font-display text-xl font-bold uppercase tracking-wide text-rust-500">
+                <h3 className="font-display text-2xl font-bold uppercase tracking-wide text-rust-500 sm:text-3xl">
                   Your Contribution Matters
                 </h3>
-                <p className="mt-3 text-ink-soft">
+                <p className="mt-3 text-lg leading-relaxed text-ink-soft">
                   During seminar registration, you can add a contribution to any of the
                   causes above. Every dollar you give goes directly to the cause you
                   choose.
                 </p>
-                <p className="mt-3 font-display font-bold uppercase tracking-wide text-teal-600">
+                <p className="mt-3 font-display text-lg font-bold uppercase tracking-wide text-teal-600">
                   100% of contributions go directly to these causes.
                 </p>
               </div>
@@ -184,17 +184,17 @@ export default async function CausesPage() {
 
           <Reveal delay={0.1} className="lg:border-l lg:border-cream-300 lg:pl-12">
             <div className="flex gap-5">
-              <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-teal-600 text-cream-50">
-                <HandHeart className="h-8 w-8" />
+              <span className="grid h-20 w-20 shrink-0 place-items-center rounded-full bg-teal-600 text-cream-50">
+                <HandHeart className="h-10 w-10" />
               </span>
               <div>
-                <h3 className="font-display text-xl font-bold uppercase tracking-wide text-teal-600">
+                <h3 className="font-display text-2xl font-bold uppercase tracking-wide text-teal-600 sm:text-3xl">
                   Together, We Can:
                 </h3>
-                <ul className="mt-3 space-y-2">
+                <ul className="mt-4 space-y-3">
                   {together.map((t) => (
-                    <li key={t} className="flex items-center gap-2 text-ink">
-                      <Check className="h-4 w-4 shrink-0 text-rust-500" /> {t}
+                    <li key={t} className="flex items-center gap-3 text-lg text-ink">
+                      <Check className="h-5 w-5 shrink-0 text-rust-500" strokeWidth={2.5} /> {t}
                     </li>
                   ))}
                 </ul>
@@ -206,7 +206,7 @@ export default async function CausesPage() {
       </section>
 
       {/* Banner */}
-      <section className="py-16 sm:py-20">
+      <section className="py-10 sm:py-12">
         <div className="container-page">
           <div className="flex flex-col items-center gap-6 overflow-hidden rounded-lg bg-[#002E33] px-8 py-10 text-cream-50 lg:flex-row lg:justify-between">
             <div className="flex items-center gap-5 text-center lg:text-left">

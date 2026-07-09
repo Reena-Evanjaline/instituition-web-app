@@ -93,7 +93,7 @@ export default async function SeminarsPage() {
             }}
           />
         </div>
-        <div className="container-page relative py-12 lg:py-20">
+        <div className="container-page relative py-10 lg:py-12">
           <div className="max-w-xl">
             <h1 className="font-display text-5xl font-bold uppercase leading-[1.02] text-navy-600 sm:text-6xl">
               {c.title}
@@ -119,7 +119,7 @@ export default async function SeminarsPage() {
       </section>
 
       {/* Curriculum */}
-      <section className="py-16 sm:py-20">
+      <section className="py-10 sm:py-12">
         <div className="container-page">
           <FlourishTitle>What You Will Learn</FlourishTitle>
           <div className="mt-12 grid gap-8 lg:grid-cols-2">
@@ -130,20 +130,20 @@ export default async function SeminarsPage() {
       </section>
 
       {/* Dates + Info */}
-      <section className="bg-cream-200/60 py-16 sm:py-20">
+      <section className="bg-cream-200/60 py-10 sm:py-12">
         <div className="container-page grid items-stretch gap-8 lg:grid-cols-2">
           {/* Dates table */}
           <Reveal className="flex h-full flex-col">
             <div className="flex items-center gap-3">
-              <Calendar className="h-6 w-6 text-teal-600" />
-              <h2 className="font-display text-2xl font-bold uppercase tracking-wide text-navy-600">
+              <Calendar className="h-7 w-7 text-teal-600" />
+              <h2 className="font-display text-3xl font-bold uppercase tracking-wide text-navy-600">
                 Upcoming Seminar Dates
               </h2>
             </div>
-            <div className="mt-5 flex flex-col overflow-hidden rounded-lg border border-cream-300 bg-cream-50 shadow-card">
-              <table className="w-full text-sm">
+            <div className="mt-5 flex flex-col overflow-x-auto rounded-lg border border-cream-300 bg-cream-50 shadow-card">
+              <table className="w-full min-w-[560px] text-base">
                 <thead>
-                  <tr className="bg-teal-700 text-left font-display text-xs uppercase tracking-wide text-cream-50">
+                  <tr className="bg-teal-700 text-left font-display text-sm uppercase tracking-wide text-cream-50">
                     <th className="px-4 py-3">Date</th>
                     <th className="px-4 py-3">Location</th>
                     <th className="px-4 py-3">Seats Available</th>
@@ -163,7 +163,7 @@ export default async function SeminarsPage() {
                       <td className="px-4 py-3 text-right">
                         <Link
                           href={`/register?seminar=${encodeURIComponent(s.id)}`}
-                          className="btn-accent px-3 py-1.5 text-xs"
+                          className="btn-accent px-4 py-2 text-sm"
                         >
                           Register
                         </Link>
@@ -179,16 +179,16 @@ export default async function SeminarsPage() {
             >
               View All Dates
             </Link>
-            <p className="mt-4 flex items-center justify-center gap-2 text-sm font-semibold text-ink-soft">
-              <Calendar className="h-4 w-4" /> New seminars every two weeks!
+            <p className="mt-4 flex items-center justify-center gap-2 text-base font-semibold text-ink-soft">
+              <Calendar className="h-5 w-5" /> New seminars every two weeks!
             </p>
           </Reveal>
 
           {/* Info box */}
           <Reveal delay={0.1} className="flex h-full flex-col">
             <div className="flex items-center gap-3">
-              <Info className="h-6 w-6 text-teal-600" />
-              <h2 className="font-display text-2xl font-bold uppercase tracking-wide text-navy-600">
+              <Info className="h-7 w-7 text-teal-600" />
+              <h2 className="font-display text-3xl font-bold uppercase tracking-wide text-navy-600">
                 Seminar Information
               </h2>
             </div>
@@ -198,14 +198,14 @@ export default async function SeminarsPage() {
                   <DollarSign className="h-7 w-7" />
                 </span>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-ink-soft">
+                  <p className="text-sm font-semibold uppercase tracking-wide text-ink-soft">
                     Investment
                   </p>
-                  <p className="font-display text-4xl font-bold text-teal-700">
+                  <p className="font-display text-5xl font-bold text-teal-700">
                     <CountUp value={1595} prefix="$" />
                   </p>
                 </div>
-                <div className="text-sm text-ink-soft">
+                <div className="text-base text-ink-soft">
                   <p className="font-semibold text-navy-600">Per Participant</p>
                   <p>Group rates available</p>
                 </div>
@@ -234,10 +234,10 @@ export default async function SeminarsPage() {
               className="animate-float h-20 w-auto shrink-0 select-none"
             />
             <div>
-              <h2 className="font-display text-2xl font-bold uppercase tracking-wide sm:text-3xl">
+              <h2 className="font-display text-3xl font-bold uppercase tracking-wide sm:text-4xl">
                 {c.bannerTitle}
               </h2>
-              <p className="mt-2 text-cream-100/85">{c.bannerSubtitle}</p>
+              <p className="mt-2 text-lg text-cream-100/85">{c.bannerSubtitle}</p>
             </div>
           </div>
           <Link href="/register" className="btn-outline-light shrink-0">
@@ -265,19 +265,19 @@ function CurriculumColumn({
   return (
     <Reveal>
       <div className="rounded-lg border border-cream-300 bg-cream-50/60 p-5 shadow-card">
-        <div className={`mx-auto mb-6 w-40 rounded-md py-2 text-center font-display text-lg font-bold uppercase tracking-widest text-cream-50 ${tint}`}>
+        <div className={`mx-auto mb-6 w-44 rounded-md py-2.5 text-center font-display text-xl font-bold uppercase tracking-widest text-cream-50 ${tint}`}>
           {label}
         </div>
         <div className="grid gap-5 sm:grid-cols-2">
           {cards.map((card) => (
             <div key={card.title} className="group flex h-full flex-col items-center rounded-lg border border-cream-300 bg-cream-50 p-6 text-center transition-shadow duration-300 hover:shadow-card">
-              <span className={`icon-pop grid h-16 w-16 place-items-center rounded-full text-cream-50 ${iconTint}`}>
-                <card.icon className="h-8 w-8" />
+              <span className={`icon-pop grid h-20 w-20 place-items-center rounded-full text-cream-50 ${iconTint}`}>
+                <card.icon className="h-10 w-10" />
               </span>
-              <h3 className={`mt-4 font-display text-base font-bold uppercase leading-tight tracking-wide ${accent}`}>
+              <h3 className={`mt-4 font-display text-xl font-bold uppercase leading-tight tracking-wide ${accent}`}>
                 {card.title}
               </h3>
-              <p className="mt-2 text-sm text-ink-soft">{card.body}</p>
+              <p className="mt-2 text-base text-ink-soft">{card.body}</p>
               <span className={`mt-6 block h-1 w-16 rounded-full ${iconTint}`} />
             </div>
           ))}
@@ -299,15 +299,15 @@ function InfoList({
   return (
     <div className="rounded-lg border border-cream-300 bg-cream-50 p-5 shadow-card">
       <div className="flex items-start gap-4">
-        <Icon className="h-9 w-9 shrink-0 text-teal-600" strokeWidth={1.75} />
+        <Icon className="h-10 w-10 shrink-0 text-teal-600" strokeWidth={1.75} />
         <div>
-          <p className="font-display text-sm font-bold uppercase tracking-wide text-navy-600">
+          <p className="font-display text-lg font-bold uppercase tracking-wide text-navy-600">
             {title}
           </p>
-          <ul className="mt-2 space-y-1.5">
+          <ul className="mt-2 space-y-2">
             {items.map((it) => (
-              <li key={it} className="flex items-center gap-2 text-sm text-ink-soft">
-                <Check className="h-4 w-4 shrink-0 text-teal-600" /> {it}
+              <li key={it} className="flex items-center gap-2.5 text-base text-ink-soft">
+                <Check className="h-5 w-5 shrink-0 text-teal-600" /> {it}
               </li>
             ))}
           </ul>

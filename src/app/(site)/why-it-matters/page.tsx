@@ -52,7 +52,7 @@ export default async function WhyPage() {
               priority
               sizes="52vw"
               className="object-cover"
-              style={{ objectPosition: "50% 30%" }}
+              style={{ objectPosition: "50% 12%" }}
             />
             <div
               className="absolute inset-0"
@@ -62,17 +62,17 @@ export default async function WhyPage() {
               }}
             />
           </div>
-          <div className="container-page relative py-12 lg:py-20">
-            <div className="max-w-xl">
-              <h1 className="font-display text-4xl font-bold uppercase leading-[1.05] text-navy-600 sm:text-5xl">
+          <div className="container-page relative py-10 lg:flex lg:min-h-[440px] lg:flex-col lg:justify-center lg:py-16">
+            <div className="max-w-2xl">
+              <h1 className="font-display text-5xl font-bold uppercase leading-[1.05] text-navy-600 sm:text-6xl">
                 {c.title} <span className="text-rust-500">{c.titleAccent}</span>{" "}
                 {c.titleEnd}
               </h1>
-              <span className="mt-5 block h-0.5 w-12 bg-rust-500" />
-              <p className="mt-5 max-w-md text-lg leading-relaxed text-ink-soft">
+              <span className="mt-5 block h-1 w-16 bg-rust-500" />
+              <p className="mt-5 max-w-lg text-xl leading-relaxed text-ink-soft">
                 {c.subtitle}
               </p>
-              <p className="mt-4 font-display text-lg font-semibold italic text-teal-600">
+              <p className="mt-4 font-display text-xl font-semibold italic text-teal-600">
                 {c.emphasis}
               </p>
             </div>
@@ -85,14 +85,14 @@ export default async function WhyPage() {
               fill
               sizes="100vw"
               className="object-cover"
-              style={{ objectPosition: "50% 30%" }}
+              style={{ objectPosition: "50% 15%" }}
             />
           </div>
         </div>
       </section>
 
       {/* Empowers */}
-      <section className="py-16 sm:py-20">
+      <section className="py-10 sm:py-12">
         <div className="container-page">
           <h2 className="text-center font-display text-2xl font-bold uppercase tracking-wide text-teal-600 sm:text-3xl">
             Sovereignty Empowers Our Nations To:
@@ -116,7 +116,7 @@ export default async function WhyPage() {
       </section>
 
       {/* Training band */}
-      <section className="pb-16 sm:pb-20">
+      <section className="pb-10 sm:pb-12">
         <div className="container-page">
           <div className="overflow-hidden rounded-lg bg-[#002E33] text-cream-50">
             <div className="grid gap-8 lg:grid-cols-2">
@@ -154,7 +154,7 @@ export default async function WhyPage() {
       </section>
 
       {/* Quote + together */}
-      <section className="pb-16 sm:pb-20">
+      <section className="pb-10 sm:pb-12">
         <div className="container-page grid gap-6 lg:grid-cols-2">
           <Reveal>
             <div className="flex h-full gap-5 rounded-lg border border-cream-300 bg-cream-50 p-8 shadow-card">

@@ -120,7 +120,7 @@ function Shell({
   primary: { href: string; label: string };
 }) {
   return (
-    <section className="container-page flex min-h-[70vh] items-center justify-center py-20">
+    <section className="container-page flex min-h-[70vh] items-center justify-center py-12">
       <div className="card max-w-lg p-8 text-center sm:p-12">
         <span className={`mx-auto grid h-20 w-20 place-items-center rounded-full ${tint}`}>
           {icon}

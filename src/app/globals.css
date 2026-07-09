@@ -36,7 +36,7 @@
   --color-ink-soft: #4f4a42;
 
   --font-sans: Arial, Helvetica, "Liberation Sans", sans-serif;
-  --font-display: Arial, Helvetica, "Liberation Sans", sans-serif;
+  --font-display: var(--font-anton), "Arial Narrow", Arial, Helvetica, sans-serif;
 
   --shadow-soft: 0 18px 48px -20px rgb(12 45 40 / 0.35);
   --shadow-card: 0 8px 30px -14px rgb(20 20 20 / 0.18);
@@ -58,11 +58,14 @@ body {
 h1, h2, h3, h4, .font-display {
   font-family: var(--font-display);
   letter-spacing: 0.005em;
+  /* Anton ships a single weight — don't let font-bold synthesize a fake heavier one. */
+  font-synthesis: none;
 }
 
 @layer components {
+  /* Fluid container: full width with consistent edge gutters (no max-width box). */
   .container-page {
-    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+    @apply w-full px-5 sm:px-10 xl:px-14;
   }
 
   /* Full-bleed container — no max-width cap, edge padding only. */
@@ -132,13 +135,19 @@ h1, h2, h3, h4, .font-display {
 /* Southwestern woven border band */
 .weave-band {
   height: 16px;
-  background-image: url("/images/weave-border.png");
+  background-image: url("/images/weave-border-v2.png");
   background-repeat: repeat-x;
   background-size: auto 100%;
 }
 .weave-band-lg {
   height: 22px;
-  background-image: url("/images/weave-border.png");
+  background-image: url("/images/weave-border-v2.png");
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+}
+.weave-band-xl {
+  height: 48px;
+  background-image: url("/images/weave-border-v2.png");
   background-repeat: repeat-x;
   background-size: auto 100%;
 }

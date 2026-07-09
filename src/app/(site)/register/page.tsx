@@ -56,7 +56,7 @@ export default async function RegisterPage({
               }}
             />
           </div>
-          <div className="container-page relative py-12 lg:py-16">
+          <div className="container-page relative py-10 lg:py-12">
             <div className="max-w-xl">
               <h1 className="font-display text-4xl font-bold uppercase leading-[1.05] sm:text-5xl">
                 {c.title}
@@ -80,7 +80,7 @@ export default async function RegisterPage({
         </div>
       </section>
 
-      <section className="py-14 sm:py-16">
+      <section className="py-10 sm:py-12">
         <div className="container-page">
           {sp.canceled && (
             <div className="mb-8 flex items-center gap-2 rounded-md bg-rust-500/10 px-4 py-3 text-sm text-rust-600">

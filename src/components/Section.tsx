@@ -66,7 +66,7 @@ export function Section({
   id?: string;
 }) {
   return (
-    <section id={id} className={`py-16 sm:py-20 ${className}`}>
+    <section id={id} className={`py-10 sm:py-12 ${className}`}>
       <div className="container-page">{children}</div>
     </section>
   );

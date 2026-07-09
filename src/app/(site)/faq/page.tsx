@@ -56,7 +56,7 @@ export default async function FaqPage() {
       {/* Hero */}
       <section>
         <div className="relative flex min-h-[240px] items-center overflow-hidden bg-[#002E33] text-cream-50 sm:min-h-0 sm:aspect-[1536/360]">
-          <div className="container-page relative w-full py-14">
+          <div className="container-page relative w-full py-10">
             <div className="flex items-center gap-4">
               <span className="hidden h-16 w-16 shrink-0 place-items-center rounded-full border-2 border-cream-50/60 sm:grid">
                 <HelpCircle className="h-8 w-8" />
@@ -77,7 +77,7 @@ export default async function FaqPage() {
       </section>
 
       {/* Questions */}
-      <section className="py-16 sm:py-20">
+      <section className="py-10 sm:py-12">
         <div className="container-page">
           <FlourishTitle>Frequently Asked Questions</FlourishTitle>
           <div className="mx-auto mt-12 max-w-3xl space-y-3">
@@ -101,7 +101,7 @@ export default async function FaqPage() {
       </section>
 
       {/* Still need help */}
-      <section className="pb-16 sm:pb-20">
+      <section className="pb-10 sm:pb-12">
         <div className="container-page">
           <div className="flex flex-col items-center gap-6 rounded-lg bg-[#002E33] px-8 py-10 text-center text-cream-50 lg:flex-row lg:justify-between lg:text-left">
             <div className="flex items-center gap-5">

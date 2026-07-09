@@ -26,9 +26,9 @@ export async function Footer() {
   return (
     <footer className="mt-0">
       <div className="bg-[#001733] text-cream-100">
-        <div className="container-page grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid w-full gap-10 px-5 py-10 sm:px-10 xl:px-14 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Logo variant="light" />
+            <Logo variant="light" size="sm" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white">
               {site.footerTagline}
             </p>
@@ -124,7 +124,7 @@ export async function Footer() {
         </div>
 
         <div className="border-t border-white/10">
-          <div className="container-page flex flex-col items-center justify-between gap-3 py-5 text-xs text-cream-200/60 sm:flex-row">
+          <div className="flex w-full flex-col items-center justify-between gap-3 px-5 py-5 text-xs text-cream-200/60 sm:flex-row sm:px-10 xl:px-14">
             <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
               <Link href="/privacy" className="hover:text-cream-50">Privacy Policy</Link>

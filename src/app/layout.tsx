@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
+import { Anton } from "next/font/google";
 import "./globals.css";
+
+/** Condensed display face used for headings, prices, and buttons (matches the demo). */
+const anton = Anton({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-anton",
+});
 
 const SITE_NAME = "AI Institute for Native Americans";
 const SITE_DESCRIPTION =
@@ -38,7 +46,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className="h-full scroll-smooth antialiased"
+      className={`h-full scroll-smooth antialiased ${anton.variable}`}
     >
       <body className="min-h-full">{children}</body>
     </html>

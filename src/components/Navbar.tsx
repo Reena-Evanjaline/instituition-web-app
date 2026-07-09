@@ -49,7 +49,7 @@ export function Navbar({ user }: { user?: { name: string } | null }) {
 
   return (
     <header className="sticky top-0 z-50 bg-[#FBF3EA]">
-      <nav className="flex h-24 w-full items-center justify-between gap-4 px-4 sm:px-6 xl:h-28 xl:px-10">
+      <nav className="flex h-28 w-full items-center justify-between gap-4 px-4 py-2 sm:px-6 xl:h-40 xl:px-10">
         <Logo className="pt-1 sm:pt-2" priority />
 
         <div className="hidden items-center gap-1 xl:flex">
@@ -57,7 +57,7 @@ export function Navbar({ user }: { user?: { name: string } | null }) {
             <Link
               key={l.href}
               href={l.href}
-              className={`relative whitespace-nowrap px-3 py-2 font-display text-base font-semibold tracking-normal transition-colors ${
+              className={`relative whitespace-nowrap px-3 py-2 text-base font-semibold tracking-normal transition-colors ${
                 isActive(l.href)
                   ? "text-rust-500"
                   : "text-navy-600 hover:text-rust-500"
@@ -88,7 +88,7 @@ export function Navbar({ user }: { user?: { name: string } | null }) {
           ) : (
             <Link
               href="/login"
-              className="whitespace-nowrap font-display text-base font-semibold text-navy-600 transition-colors hover:text-rust-500"
+              className="whitespace-nowrap text-base font-semibold text-navy-600 transition-colors hover:text-rust-500"
             >
               Sign In
             </Link>
@@ -113,7 +113,7 @@ export function Navbar({ user }: { user?: { name: string } | null }) {
       {/* Mobile drawer */}
       <div className={open ? "pointer-events-auto xl:hidden" : "pointer-events-none xl:hidden"}>
         <div
-          className={`fixed inset-0 top-24 z-40 bg-navy-800/40 transition-opacity ${
+          className={`fixed inset-0 top-28 z-40 bg-navy-800/40 transition-opacity ${
             open ? "opacity-100" : "opacity-0"
           }`}
           onClick={() => setOpen(false)}
@@ -121,7 +121,7 @@ export function Navbar({ user }: { user?: { name: string } | null }) {
         <div
           id="mobile-menu"
           inert={!open}
-          className={`fixed inset-x-0 top-24 z-50 border-b border-cream-300 bg-[#FBF3EA] px-5 pb-6 pt-3 shadow-soft transition-all duration-300 ${
+          className={`fixed inset-x-0 top-28 z-50 border-b border-cream-300 bg-[#FBF3EA] px-5 pb-6 pt-3 shadow-soft transition-all duration-300 ${
             open ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0"
           }`}
         >
@@ -130,7 +130,7 @@ export function Navbar({ user }: { user?: { name: string } | null }) {
               <Link
                 key={l.href}
                 href={l.href}
-                className={`rounded-md px-4 py-3 font-display text-base font-semibold tracking-normal ${
+                className={`rounded-md px-4 py-3 text-base font-semibold tracking-normal ${
                   isActive(l.href)
                     ? "bg-teal-600 text-cream-50"
                     : "text-navy-600 hover:bg-cream-200"
@@ -141,7 +141,7 @@ export function Navbar({ user }: { user?: { name: string } | null }) {
             ))}
             <Link
               href={user ? "/account" : "/login"}
-              className="flex items-center gap-2.5 rounded-md px-4 py-3 font-display text-base font-semibold tracking-normal text-navy-600 hover:bg-cream-200"
+              className="flex items-center gap-2.5 rounded-md px-4 py-3 text-base font-semibold tracking-normal text-navy-600 hover:bg-cream-200"
             >
               {user && <UserRound className="h-5 w-5" />}
               {user ? "My Account" : "Sign In"}

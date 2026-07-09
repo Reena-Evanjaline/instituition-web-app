@@ -79,7 +79,7 @@ export default async function AccountPage() {
         <WovenBorder />
       </section>
 
-      <section className="py-12 sm:py-16">
+      <section className="py-8 sm:py-10">
         <div className="container-page grid gap-8 lg:grid-cols-2 lg:items-start">
           {/* Registrations */}
           <div>

@@ -39,7 +39,7 @@ export function PageHero({
           <div className="absolute inset-0 bg-gradient-to-r from-navy-900/75 via-navy-900/30 to-transparent" />
         </div>
 
-        <div className="container-page relative w-full py-14">
+        <div className="container-page relative w-full py-10">
           <div className="max-w-2xl">
             <h1 className="font-display text-5xl font-bold uppercase leading-[1.02] text-cream-50 sm:text-6xl lg:text-7xl">
               {title}

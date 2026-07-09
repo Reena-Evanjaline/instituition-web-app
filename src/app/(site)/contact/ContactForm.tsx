@@ -32,7 +32,7 @@ export function ContactForm() {
   }
 
   return (
-    <form action={action} className="card space-y-5 p-6 sm:p-8">
+    <form action={action} className="card space-y-6 p-8 sm:p-10">
       {state.error && (
         <div className="flex items-center gap-2 rounded-xl bg-rust-500/10 px-4 py-3 text-sm text-rust-600">
           <AlertCircle className="h-4 w-4 shrink-0" />
@@ -90,7 +90,7 @@ export function ContactForm() {
         <textarea
           id="message"
           name="message"
-          rows={5}
+          rows={6}
           placeholder="How can we help?"
           className="field-input resize-y"
           required
@@ -100,7 +100,7 @@ export function ContactForm() {
         )}
       </div>
 
-      <button type="submit" disabled={pending} className="btn-accent w-full sm:w-auto">
+      <button type="submit" disabled={pending} className="btn-accent w-full px-8 py-3.5 text-base sm:w-auto">
         {pending ? "Sending…" : "Send Message"}
         {!pending && <Send className="h-4 w-4" />}
       </button>
