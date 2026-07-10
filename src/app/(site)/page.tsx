@@ -206,16 +206,17 @@ export default async function HomePage() {
       </section>
 
       {/* ── Causes CTA band ──────────────────────────────── */}
-      <section className="relative overflow-hidden bg-[#00262c] text-cream-50">
+      <section className="relative overflow-hidden bg-[#00232a] text-cream-50">
+        {/* Small mandala flower accent, faded into the bottom-right corner. */}
         <Image
-          src="/images/cta-mandala-full.png"
+          src="/images/cta-mandala-corner.jpg"
           alt=""
-          width={536}
-          height={536}
+          width={480}
+          height={480}
           aria-hidden
-          className="pointer-events-none absolute right-0 top-1/2 hidden h-[118%] w-auto -translate-y-1/2 select-none lg:block"
+          className="pointer-events-none absolute bottom-0 right-0 hidden h-48 w-48 select-none object-cover [-webkit-mask-image:radial-gradient(circle_at_center,black_48%,transparent_78%)] [mask-image:radial-gradient(circle_at_center,black_48%,transparent_78%)] lg:block xl:h-56 xl:w-56"
         />
-        <div className="relative grid w-full items-center gap-8 px-5 py-10 sm:px-10 xl:px-14 lg:min-h-[22rem] lg:grid-cols-[auto_1fr_auto]">
+        <div className="relative grid w-full items-center gap-8 px-5 py-10 sm:px-10 xl:px-14 lg:grid-cols-[auto_1fr_auto]">
           <Image
             src="/images/cta-feather-v2.png"
             alt="Beaded eagle feather"
