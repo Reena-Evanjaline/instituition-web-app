@@ -40,6 +40,8 @@
 
   --shadow-soft: 0 18px 48px -20px rgb(12 45 40 / 0.35);
   --shadow-card: 0 8px 30px -14px rgb(20 20 20 / 0.18);
+  /* Tight low-blur button shadow — keeps edges crisp, no haze. */
+  --shadow-btn: 0 2px 6px -1px rgb(20 20 20 / 0.25);
 }
 
 :root {
@@ -73,27 +75,27 @@ h1, h2, h3, h4, .font-display {
     @apply mx-auto w-full px-5 sm:px-8 xl:px-12;
   }
 
-  /* Buttons — squared, bold, uppercase like the mockups */
+  /* Buttons — rounded, bold uppercase in the body sans for crisp small-size rendering */
   .btn,
   .btn-primary,
   .btn-accent,
   .btn-gold,
   .btn-outline,
   .btn-outline-light {
-    @apply inline-flex items-center justify-center gap-2 rounded-md px-6 py-3
-      font-display text-sm font-semibold uppercase tracking-wide transition-all
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3
+      font-sans text-base font-bold uppercase tracking-wide transition-all
       duration-200 focus:outline-none focus-visible:ring-2
       focus-visible:ring-offset-2 focus-visible:ring-rust-500
       disabled:cursor-not-allowed disabled:opacity-60;
   }
   .btn-accent {
-    @apply bg-rust-500 text-cream-50 shadow-card hover:bg-rust-600 hover:-translate-y-0.5;
+    @apply bg-rust-500 text-white shadow-btn hover:bg-rust-600 hover:-translate-y-0.5;
   }
   .btn-primary {
-    @apply bg-teal-600 text-cream-50 shadow-card hover:bg-teal-700 hover:-translate-y-0.5;
+    @apply bg-teal-600 text-cream-50 shadow-btn hover:bg-teal-700 hover:-translate-y-0.5;
   }
   .btn-gold {
-    @apply bg-gold-500 text-navy-700 shadow-card hover:bg-gold-400 hover:-translate-y-0.5;
+    @apply bg-gold-500 text-navy-700 shadow-btn hover:bg-gold-400 hover:-translate-y-0.5;
   }
   .btn-outline {
     @apply border-2 border-teal-600 bg-transparent text-teal-600 hover:bg-teal-600 hover:text-cream-50;

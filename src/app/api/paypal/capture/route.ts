@@ -13,7 +13,9 @@ export async function GET(req: Request) {
   const url = new URL(req.url);
   const rid = url.searchParams.get("rid");
   const orderId = url.searchParams.get("token");
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? url.origin;
+  // Use the origin the request actually came in on (PayPal redirected the
+  // browser here), so we bounce back to the same host/port — not a stale env.
+  const base = url.origin;
 
   const cancel = () => NextResponse.redirect(`${base}/register?canceled=1`);
   const success = () =>

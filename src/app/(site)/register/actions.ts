@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { createOrder, isPayPalEnabled } from "@/lib/paypal";
@@ -13,12 +14,15 @@ const DEFAULT_SEAT_CENTS = 159500;
 const schema = z.object({
   fullName: z.string().min(2, "Please enter your full name."),
   email: z.string().email("Please enter a valid email address."),
-  phone: z.string().optional(),
-  organization: z.string().optional(),
-  role: z.string().optional(),
-  descriptor: z.string().optional(),
-  seminarId: z.string().optional(),
-  cause: z.string().optional(),
+  // These come straight from FormData.get(), which yields `null` for any field
+  // not present in the form (e.g. descriptor). `.nullish()` accepts null too —
+  // `.optional()` alone rejects null and fails the whole parse.
+  phone: z.string().nullish(),
+  organization: z.string().nullish(),
+  role: z.string().nullish(),
+  descriptor: z.string().nullish(),
+  seminarId: z.string().nullish(),
+  cause: z.string().nullish(),
   // Only the OPTIONAL contribution is client-supplied; the seat fee is always
   // derived server-side from the selected seminar. Cap keeps a fat-fingered or
   // tampered value from creating an absurd charge.
@@ -127,7 +131,20 @@ export async function submitRegistration(
     return { error: "Could not save your registration. Please try again." };
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  // Build the base URL from the ACTUAL request host so PayPal's return/cancel
+  // redirects come back to the right origin — the dev server may run on 3001 (or
+  // any port) while NEXT_PUBLIC_SITE_URL still says 3000. In production the host
+  // is the real domain, so this stays correct there too.
+  const hdrs = await headers();
+  const host = hdrs.get("host");
+  const proto =
+    hdrs.get("x-forwarded-proto") ??
+    (host && (host.startsWith("localhost") || host.startsWith("127.0.0.1"))
+      ? "http"
+      : "https");
+  const siteUrl = host
+    ? `${proto}://${host}`
+    : process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
   // ── PayPal checkout ──────────────────────────────────────────
   // Active when PayPal credentials are configured. Create an order, stash its

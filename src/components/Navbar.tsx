@@ -44,6 +44,13 @@ export function Navbar({ user }: { user?: { name: string } | null }) {
     return () => document.removeEventListener("keydown", onKey);
   }, [open]);
 
+  // The bottom mobile nav bar's "Menu" button toggles this same drawer.
+  useEffect(() => {
+    const toggle = () => setOpen((v) => !v);
+    window.addEventListener("toggle-mobile-menu", toggle);
+    return () => window.removeEventListener("toggle-mobile-menu", toggle);
+  }, []);
+
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
@@ -79,7 +86,7 @@ export function Navbar({ user }: { user?: { name: string } | null }) {
               title="My Account"
               className={`grid h-11 w-11 place-items-center rounded-full border transition-colors ${
                 isActive("/account")
-                  ? "border-rust-500 bg-rust-500 text-cream-50"
+                  ? "border-rust-500 bg-rust-500 text-white"
                   : "border-cream-300 bg-cream-50 text-navy-600 hover:border-rust-500 hover:text-rust-500"
               }`}
             >

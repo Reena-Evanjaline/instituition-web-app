@@ -27,7 +27,7 @@ export function QuickActions() {
         const cls = active
           ? "bg-teal-600 text-cream-50 ring-2 ring-teal-700"
           : a.accent
-            ? "bg-rust-500 text-cream-50 hover:bg-rust-600"
+            ? "bg-rust-500 text-white hover:bg-rust-600"
             : "bg-cream-50 text-navy-700 hover:bg-cream-100";
         return (
           <Link

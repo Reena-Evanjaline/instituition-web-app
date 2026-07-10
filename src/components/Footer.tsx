@@ -24,7 +24,7 @@ const socials = [
 export async function Footer() {
   const site = await getSiteContent();
   return (
-    <footer className="mt-0">
+    <footer className="sticky bottom-0 z-0">
       <div className="bg-[#001733] text-cream-100">
         <div className="grid w-full gap-10 px-5 py-10 sm:px-10 xl:px-14 md:grid-cols-2 lg:grid-cols-4">
           <div>
@@ -48,7 +48,7 @@ export async function Footer() {
             </div>
           </div>
 
-          <div className="lg:border-l lg:border-white/10 lg:pl-10">
+          <div className="hidden md:block lg:border-l lg:border-white/10 lg:pl-10">
             <h4 className="font-display text-sm font-bold uppercase tracking-[0.14em] text-cream-50">
               Quick Links
             </h4>
@@ -124,7 +124,7 @@ export async function Footer() {
         </div>
 
         <div className="border-t border-white/10">
-          <div className="flex w-full flex-col items-center justify-between gap-3 px-5 py-5 text-xs text-cream-200/60 sm:flex-row sm:px-10 xl:px-14">
+          <div className="flex w-full flex-col items-center justify-between gap-3 px-5 pt-5 pb-24 text-xs text-cream-200/60 sm:flex-row sm:px-10 sm:pb-5 xl:px-14">
             <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
               <Link href="/privacy" className="hover:text-cream-50">Privacy Policy</Link>

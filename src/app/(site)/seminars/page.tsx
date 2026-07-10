@@ -133,7 +133,7 @@ export default async function SeminarsPage() {
       <section className="bg-cream-200/60 py-10 sm:py-12">
         <div className="container-page grid items-stretch gap-8 lg:grid-cols-2">
           {/* Dates table */}
-          <Reveal className="flex h-full flex-col">
+          <Reveal className="flex h-full min-w-0 flex-col">
             <div className="flex items-center gap-3">
               <Calendar className="h-7 w-7 text-teal-600" />
               <h2 className="font-display text-3xl font-bold uppercase tracking-wide text-navy-600">
@@ -185,7 +185,7 @@ export default async function SeminarsPage() {
           </Reveal>
 
           {/* Info box */}
-          <Reveal delay={0.1} className="flex h-full flex-col">
+          <Reveal delay={0.1} className="flex h-full min-w-0 flex-col">
             <div className="flex items-center gap-3">
               <Info className="h-7 w-7 text-teal-600" />
               <h2 className="font-display text-3xl font-bold uppercase tracking-wide text-navy-600">

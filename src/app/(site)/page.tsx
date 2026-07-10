@@ -5,9 +5,6 @@ import {
   Users,
   TrendingUp,
   Calendar,
-  UtensilsCrossed,
-  BookOpen,
-  Award,
   ArrowRight,
   DollarSign,
 } from "lucide-react";
@@ -120,22 +117,25 @@ export default async function HomePage() {
 
             <div className="hidden h-20 w-px bg-cream-300 lg:block" />
 
-            <div className="flex flex-nowrap items-start justify-center gap-8">
+            <div className="grid w-full grid-cols-3 items-start gap-3 sm:flex sm:w-auto sm:flex-nowrap sm:justify-center sm:gap-8">
               {[
-                [UtensilsCrossed, "Meals Included"],
-                [BookOpen, "Training Materials"],
-                [Award, "Certificate of Completion"],
-              ].map(([Icon, label]) => {
-                const I = Icon as typeof Award;
-                return (
-                  <div key={label as string} className="flex w-36 flex-col items-center gap-3 text-center">
-                    <I className="h-12 w-12 shrink-0 text-navy-600" />
-                    <span className="text-base font-bold uppercase leading-snug tracking-wide text-navy-600">
-                      {label as string}
-                    </span>
-                  </div>
-                );
-              })}
+                { src: "/images/feature-meals.png", label: "Meals Included" },
+                { src: "/images/feature-training.png", label: "Training Materials" },
+                { src: "/images/feature-certificate.png", label: "Certificate of Completion" },
+              ].map(({ src, label }) => (
+                <div key={label} className="flex flex-col items-center gap-3 text-center sm:w-36">
+                  <Image
+                    src={src}
+                    alt=""
+                    width={56}
+                    height={56}
+                    className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14"
+                  />
+                  <span className="text-sm font-bold uppercase leading-snug tracking-wide text-navy-600 sm:text-base">
+                    {label}
+                  </span>
+                </div>
+              ))}
             </div>
 
             <Link href="/register" className="btn-accent whitespace-nowrap px-10 py-5 text-xl font-bold">
@@ -195,7 +195,7 @@ export default async function HomePage() {
               </Reveal>
             ))}
           </div>
-          <p className="mt-8 text-center text-sm font-medium text-ink-soft">
+          <p className="mt-8 text-center text-xl font-semibold text-ink-soft sm:text-2xl">
             New seminars every two weeks!
           </p>
         </div>
