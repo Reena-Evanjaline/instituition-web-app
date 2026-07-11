@@ -46,13 +46,13 @@ export default async function WhyPage() {
           {/* Desktop: photo bleeds in from the right, fading into the cream */}
           <div className="absolute inset-y-0 right-0 hidden w-[52%] lg:block">
             <Image
-              src="/images/why-hero.jpg"
+              src="/images/why-hero-v2.jpg"
               alt="Native woman in star quilt overlooking a valley at sunrise"
               fill
               priority
               sizes="52vw"
               className="object-cover"
-              style={{ objectPosition: "50% 12%" }}
+              style={{ objectPosition: "50% 0%" }}
             />
             <div
               className="absolute inset-0"
@@ -80,12 +80,12 @@ export default async function WhyPage() {
           {/* Mobile: photo below the text */}
           <div className="relative h-56 w-full sm:h-72 lg:hidden">
             <Image
-              src="/images/why-hero.jpg"
+              src="/images/why-hero-v2.jpg"
               alt=""
               fill
               sizes="100vw"
               className="object-cover"
-              style={{ objectPosition: "50% 15%" }}
+              style={{ objectPosition: "50% 0%" }}
             />
           </div>
         </div>

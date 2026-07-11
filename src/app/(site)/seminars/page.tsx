@@ -83,7 +83,7 @@ export default async function SeminarsPage() {
             fill
             priority
             sizes="60vw"
-            className="object-cover object-center"
+            className="object-cover object-top"
           />
           <div
             className="absolute inset-0"
@@ -113,7 +113,7 @@ export default async function SeminarsPage() {
             alt=""
             fill
             sizes="100vw"
-            className="object-cover"
+            className="object-cover object-top"
           />
         </div>
       </section>

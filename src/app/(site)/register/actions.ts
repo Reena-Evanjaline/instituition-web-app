@@ -80,7 +80,11 @@ export async function submitRegistration(
         select: {
           priceCents: true,
           capacity: true,
-          _count: { select: { registrations: { where: { status: "PAID" } } } },
+          // Count every active registration (PENDING + PAID) against capacity so
+          // the sold-out guard matches the seats-left count shown on the site.
+          _count: {
+            select: { registrations: { where: { status: { not: "CANCELLED" } } } },
+          },
         },
       });
       if (seminar) {

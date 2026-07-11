@@ -1,7 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { Facebook, Linkedin, Youtube } from "./SocialIcons";
-import { Logo } from "./Logo";
 import { WovenBorder } from "./WovenBorder";
 import { getSiteContent } from "@/lib/content";
 
@@ -28,7 +28,19 @@ export async function Footer() {
       <div className="bg-[#001733] text-cream-100">
         <div className="grid w-full gap-10 px-5 py-10 sm:px-10 xl:px-14 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Logo variant="light" size="sm" />
+            <Link
+              href="/"
+              aria-label="AI Institute for Native Americans — home"
+              className="inline-block transition-transform hover:scale-[1.02]"
+            >
+              <Image
+                src="/images/logo-footer.png"
+                alt="AI Institute for Native Americans"
+                width={780}
+                height={260}
+                className="h-auto w-80 max-w-full"
+              />
+            </Link>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white">
               {site.footerTagline}
             </p>

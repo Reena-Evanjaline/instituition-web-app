@@ -6,7 +6,15 @@ import { updateRegistrationStatus, deleteRegistration } from "./actions";
 import { requireAdminFeature } from "@/lib/adminFeatures";
 
 const STATUSES = ["PENDING", "PAID", "CANCELLED"] as const;
-type Filter = "ALL" | (typeof STATUSES)[number];
+const TABS = ["ALL", "TODAY", ...STATUSES] as const;
+type Filter = (typeof TABS)[number];
+
+/** Local start of the current day — used for the "Today" filter and count. */
+function startOfToday(): Date {
+  const d = new Date();
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
 
 export default async function RegistrationsPage({
   searchParams,
@@ -16,16 +24,27 @@ export default async function RegistrationsPage({
   requireAdminFeature("registrations");
   const sp = await searchParams;
   const filter = (
-    STATUSES.includes(sp.status as never) ? sp.status : "ALL"
+    TABS.includes(sp.status as never) ? sp.status : "ALL"
   ) as Filter;
 
   let rows: Awaited<ReturnType<typeof fetchRows>> = [];
+  let todayCount = 0;
   let error = false;
   try {
-    rows = await fetchRows(filter);
+    [rows, todayCount] = await Promise.all([
+      fetchRows(filter),
+      prisma.registration.count({ where: { createdAt: { gte: startOfToday() } } }),
+    ]);
   } catch {
     error = true;
   }
+
+  const tabLabel = (f: Filter) =>
+    f === "ALL"
+      ? "All"
+      : f === "TODAY"
+        ? `Today${todayCount ? ` (${todayCount})` : ""}`
+        : f.charAt(0) + f.slice(1).toLowerCase();
 
   return (
     <div className="space-y-6">
@@ -33,11 +52,16 @@ export default async function RegistrationsPage({
         <h1 className="text-2xl font-semibold text-teal-800">Registrations</h1>
         <p className="mt-1 text-ink-soft">
           Everyone who has registered for a seminar.
+          {todayCount > 0 && (
+            <span className="ml-2 rounded-full bg-teal-600/10 px-2.5 py-0.5 text-sm font-semibold text-teal-700">
+              {todayCount} registered today
+            </span>
+          )}
         </p>
       </div>
 
       <div className="flex flex-wrap gap-2">
-        {(["ALL", ...STATUSES] as Filter[]).map((f) => (
+        {TABS.map((f) => (
           <Link
             key={f}
             href={f === "ALL" ? "/admin/registrations" : `/admin/registrations?status=${f}`}
@@ -47,7 +71,7 @@ export default async function RegistrationsPage({
                 : "bg-white text-ink-soft hover:bg-teal-50"
             }`}
           >
-            {f === "ALL" ? "All" : f.charAt(0) + f.slice(1).toLowerCase()}
+            {tabLabel(f)}
           </Link>
         ))}
       </div>
@@ -152,7 +176,12 @@ export default async function RegistrationsPage({
 
 async function fetchRows(filter: Filter) {
   return prisma.registration.findMany({
-    where: filter === "ALL" ? {} : { status: filter },
+    where:
+      filter === "ALL"
+        ? {}
+        : filter === "TODAY"
+          ? { createdAt: { gte: startOfToday() } }
+          : { status: filter },
     orderBy: { createdAt: "desc" },
     include: { seminar: true },
     take: 200,

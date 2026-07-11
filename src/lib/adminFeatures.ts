@@ -12,7 +12,7 @@ import { redirect } from "next/navigation";
 export const adminFeatures = {
   dashboard: true,
   seminars: true,
-  registrations: false,
+  registrations: true,
   messages: false,
   content: false,
 } as const;

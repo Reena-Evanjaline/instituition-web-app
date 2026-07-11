@@ -34,10 +34,13 @@ export async function getUpcomingSeminars(limit?: number): Promise<SeminarDTO[]>
     const rows = await prisma.seminar.findMany({
       where: { published: true, endDate: { gte: new Date() } },
       orderBy: { startDate: "asc" },
-      // Only confirmed (PAID) registrations consume a seat — abandoned checkouts
-      // (PENDING) and CANCELLED rows must not make a seminar look full.
+      // A seat is consumed as soon as someone registers (PENDING) and stays
+      // consumed once they've PAID. Only a CANCELLED registration frees the
+      // seat back up, so the count shown drops the moment someone signs up.
       include: {
-        _count: { select: { registrations: { where: { status: "PAID" } } } },
+        _count: {
+          select: { registrations: { where: { status: { not: "CANCELLED" } } } },
+        },
       },
       ...(limit ? { take: limit } : {}),
     });
