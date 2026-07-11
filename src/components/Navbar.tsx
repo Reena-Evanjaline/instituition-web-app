@@ -56,7 +56,7 @@ export function Navbar({ user }: { user?: { name: string } | null }) {
 
   return (
     <header className="sticky top-0 z-50 bg-[#FBF3EA]">
-      <nav className="flex h-28 w-full items-center justify-between gap-4 px-4 py-2 sm:px-6 xl:h-40 xl:px-10">
+      <nav className="flex h-28 w-full items-center justify-between gap-3 px-4 py-2 sm:px-6 xl:h-40 xl:px-6 2xl:gap-4 2xl:px-10">
         <Logo className="pt-1 sm:pt-2" priority />
 
         <div className="hidden items-center gap-1 xl:flex">
@@ -64,7 +64,7 @@ export function Navbar({ user }: { user?: { name: string } | null }) {
             <Link
               key={l.href}
               href={l.href}
-              className={`relative whitespace-nowrap px-3 py-2 text-base font-semibold tracking-normal transition-colors ${
+              className={`relative whitespace-nowrap px-2.5 py-2 text-base font-semibold tracking-normal transition-colors 2xl:px-3 ${
                 isActive(l.href)
                   ? "text-rust-500"
                   : "text-navy-600 hover:text-rust-500"
@@ -78,7 +78,7 @@ export function Navbar({ user }: { user?: { name: string } | null }) {
           ))}
         </div>
 
-        <div className="hidden items-center gap-4 xl:flex">
+        <div className="hidden items-center gap-2 xl:flex 2xl:gap-4">
           {user ? (
             <Link
               href="/account"
@@ -100,7 +100,7 @@ export function Navbar({ user }: { user?: { name: string } | null }) {
               Sign In
             </Link>
           )}
-          <Link href="/register" className="btn-accent whitespace-nowrap px-6 py-3 text-base">
+          <Link href="/register" className="btn-accent whitespace-nowrap px-4 py-3 text-base 2xl:px-6">
             Register Now
           </Link>
         </div>

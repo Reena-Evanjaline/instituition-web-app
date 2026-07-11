@@ -92,16 +92,16 @@ export default async function HomePage() {
       {/* ── Info bar ─────────────────────────────────────── */}
       <section className="bg-[#FBF3EA]">
         <div className="w-full px-5 py-12 sm:px-10 xl:px-14">
-          <div className="flex flex-col items-center gap-8 lg:flex-row lg:justify-between lg:gap-6">
+          <div className="flex flex-col items-center gap-8 lg:flex-row lg:flex-wrap lg:justify-center lg:gap-x-10 lg:gap-y-8">
             <div className="flex items-center gap-5">
-              <span className="grid h-20 w-20 shrink-0 place-items-center rounded-full bg-teal-600 text-cream-50">
-                <Calendar className="h-10 w-10" />
+              <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-teal-600 text-cream-50 sm:h-20 sm:w-20">
+                <Calendar className="h-8 w-8 sm:h-10 sm:w-10" />
               </span>
               <div>
                 <p className="text-lg font-bold uppercase tracking-wide text-ink-soft">
                   Next Seminar
                 </p>
-                <p className="whitespace-nowrap font-display text-4xl font-bold text-navy-600">
+                <p className="whitespace-nowrap font-display text-3xl font-bold text-navy-600 sm:text-4xl">
                   {next ? formatDateRange(next.startDate, next.endDate) : "Coming soon"}
                 </p>
               </div>
@@ -142,7 +142,7 @@ export default async function HomePage() {
               ))}
             </div>
 
-            <Link href="/register" className="btn-accent whitespace-nowrap px-10 py-5 text-xl font-bold">
+            <Link href="/register" className="btn-accent whitespace-nowrap px-6 py-4 text-lg font-bold sm:px-10 sm:py-5 sm:text-xl">
               Reserve Your Spot Now
             </Link>
           </div>
