@@ -11,13 +11,26 @@ import { sendRegistrationConfirmation } from "@/lib/email";
 /** Fallback seat price when no real seminar row is selected (matches the demo). */
 const DEFAULT_SEAT_CENTS = 159500;
 
+/** Strip to digits and drop a leading US country code, so "+1 (555) 123-4567" → "5551234567". */
+const normalizePhone = (v: string) => v.replace(/\D/g, "").replace(/^1(?=\d{10}$)/, "");
+// A valid US/NANP number is 10 digits whose area code can't start with 0 or 1.
+const US_PHONE_RE = /^[2-9]\d{9}$/;
+
 const schema = z.object({
   fullName: z.string().min(2, "Please enter your full name."),
   email: z.string().email("Please enter a valid email address."),
+  // Required and validated as a US phone number. It arrives from FormData.get()
+  // as a string; the client formats it as (555) 123-4567, but we re-check here
+  // so a tampered or JS-disabled submit can't slip a bad number through.
+  phone: z
+    .string()
+    .refine(
+      (v) => US_PHONE_RE.test(normalizePhone(v)),
+      "Please enter a valid 10-digit US phone number.",
+    ),
   // These come straight from FormData.get(), which yields `null` for any field
   // not present in the form (e.g. descriptor). `.nullish()` accepts null too —
   // `.optional()` alone rejects null and fails the whole parse.
-  phone: z.string().nullish(),
   organization: z.string().nullish(),
   role: z.string().nullish(),
   descriptor: z.string().nullish(),

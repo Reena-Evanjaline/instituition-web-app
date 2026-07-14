@@ -161,9 +161,9 @@ export function RegisterForm({
         <div className="space-y-5">
           <div className="grid gap-5 sm:grid-cols-2">
             <Field label="Full Name" name="fullName" required defaultValue={defaultName} error={state.fieldErrors?.fullName} />
-            <Field label="Email Address" name="email" type="email" required defaultValue={defaultEmail} error={state.fieldErrors?.email} />
+            <EmailField defaultValue={defaultEmail} error={state.fieldErrors?.email} />
           </div>
-          <Field label="Phone Number" name="phone" type="tel" required />
+          <PhoneField error={state.fieldErrors?.phone} />
           <Field label="Organization / Tribe" name="organization" required />
 
           <div>
@@ -472,6 +472,88 @@ function AmountInput({
         placeholder="0.00"
         className="w-24 rounded-lg border border-cream-300 bg-white px-3 py-2 text-right text-sm focus:border-teal-500 focus:ring-teal-500"
       />
+    </div>
+  );
+}
+
+// Basic shape check for inline feedback — the server does the authoritative
+// validation. Matches "someone@example.com" without accepting spaces.
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+function EmailField({
+  defaultValue,
+  error,
+}: {
+  defaultValue?: string;
+  error?: string;
+}) {
+  const [value, setValue] = useState(defaultValue ?? "");
+  const [touched, setTouched] = useState(false);
+  const invalid = value.trim() !== "" && !EMAIL_RE.test(value.trim());
+  const showError = error ?? (touched && invalid ? "Please enter a valid email address." : undefined);
+
+  return (
+    <div>
+      <label htmlFor="email" className="field-label">
+        Email Address <span className="text-rust-500">*</span>
+      </label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        required
+        autoComplete="email"
+        placeholder="you@example.com"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onBlur={() => setTouched(true)}
+        className="field-input"
+      />
+      {showError && <p className="mt-1 text-xs text-rust-600">{showError}</p>}
+    </div>
+  );
+}
+
+/** Format loose digits into a US phone number: "5551234567" → "(555) 123-4567". */
+function formatUsPhone(raw: string): string {
+  // Drop a leading country-code 1, then keep at most 10 digits.
+  const digits = raw.replace(/\D/g, "").replace(/^1(?=\d)/, "").slice(0, 10);
+  if (digits.length < 4) return digits;
+  if (digits.length < 7) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+}
+
+function PhoneField({ error }: { error?: string }) {
+  const [value, setValue] = useState("");
+  const [touched, setTouched] = useState(false);
+  const incomplete = value.replace(/\D/g, "").length !== 10;
+  const showError =
+    error ?? (touched && value !== "" && incomplete
+      ? "Please enter a valid 10-digit US phone number."
+      : undefined);
+
+  return (
+    <div>
+      <label htmlFor="phone" className="field-label">
+        Phone Number <span className="text-rust-500">*</span>
+      </label>
+      <input
+        id="phone"
+        name="phone"
+        type="tel"
+        inputMode="tel"
+        required
+        autoComplete="tel"
+        placeholder="(555) 123-4567"
+        value={value}
+        onChange={(e) => setValue(formatUsPhone(e.target.value))}
+        onBlur={() => setTouched(true)}
+        // Enforce the (XXX) XXX-XXXX shape (area code 2–9) on native submit too.
+        pattern="\([2-9]\d{2}\) \d{3}-\d{4}"
+        title="Enter a 10-digit US phone number, e.g. (555) 123-4567"
+        className="field-input"
+      />
+      {showError && <p className="mt-1 text-xs text-rust-600">{showError}</p>}
     </div>
   );
 }
