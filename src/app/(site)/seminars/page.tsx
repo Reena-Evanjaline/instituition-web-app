@@ -130,7 +130,7 @@ export default async function SeminarsPage() {
       </section>
 
       {/* Dates + Info */}
-      <section className="bg-cream-200/60 py-10 sm:py-12">
+      <section id="dates" className="scroll-mt-28 bg-cream-200/60 py-10 sm:py-12">
         <div className="container-page grid items-stretch gap-8 lg:grid-cols-2">
           {/* Dates table */}
           <Reveal className="flex h-full min-w-0 flex-col">
@@ -140,7 +140,40 @@ export default async function SeminarsPage() {
                 Upcoming Seminar Dates
               </h2>
             </div>
-            <div className="mt-5 flex flex-col overflow-x-auto rounded-lg border border-cream-300 bg-cream-50 shadow-card">
+            {/* Phones: stacked cards so each date reads clearly with no sideways scroll. */}
+            <ul className="mt-5 space-y-3 sm:hidden">
+              {seminars.map((s) => (
+                <li
+                  key={s.id}
+                  className="rounded-lg border border-cream-300 bg-cream-50 p-4 shadow-card"
+                >
+                  <p className="font-display text-lg font-bold text-navy-600">
+                    {formatDateRange(s.startDate, s.endDate)}
+                  </p>
+                  <dl className="mt-2.5 space-y-1.5 text-sm">
+                    <div className="flex items-center justify-between gap-3">
+                      <dt className="text-ink-soft">Location</dt>
+                      <dd className="text-right font-medium text-ink">{s.location}</dd>
+                    </div>
+                    <div className="flex items-center justify-between gap-3">
+                      <dt className="text-ink-soft">Seats Available</dt>
+                      <dd className="text-right font-medium text-teal-600">
+                        {formatSeats(s.seatsLeft)}
+                      </dd>
+                    </div>
+                  </dl>
+                  <Link
+                    href={`/register?seminar=${encodeURIComponent(s.id)}`}
+                    className="btn-accent mt-3.5 w-full justify-center py-2.5 text-sm"
+                  >
+                    Register
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            {/* Tablet and up: full table. */}
+            <div className="mt-5 hidden overflow-x-auto rounded-lg border border-cream-300 bg-cream-50 shadow-card sm:flex sm:flex-col">
               <table className="w-full min-w-[560px] text-base">
                 <thead>
                   <tr className="bg-teal-700 text-left font-display text-sm uppercase tracking-wide text-cream-50">

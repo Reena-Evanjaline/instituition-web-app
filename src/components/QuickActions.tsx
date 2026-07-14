@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
  */
 const actions = [
   { href: "/register", label: "Register", accent: true },
-  { href: "/seminars", label: "Dates", accent: false },
+  { href: "/seminars#dates", label: "Dates", accent: false },
   { href: "/faq", label: "Help", accent: false },
 ];
 
@@ -23,7 +23,10 @@ export function QuickActions() {
       className="fixed right-6 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-end gap-2.5 sm:flex"
     >
       {actions.map((a) => {
-        const active = pathname === a.href || pathname.startsWith(`${a.href}/`);
+        // Match on the path only — a.href may carry a #hash (e.g. /seminars#dates)
+        // that usePathname() never includes, which would break the highlight.
+        const path = a.href.split("#")[0];
+        const active = pathname === path || pathname.startsWith(`${path}/`);
         const cls = active
           ? "bg-teal-600 text-cream-50 ring-2 ring-teal-700"
           : a.accent

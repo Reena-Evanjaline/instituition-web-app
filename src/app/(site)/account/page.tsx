@@ -200,7 +200,7 @@ export default async function AccountPage() {
                 <Link href="/register" className="btn-accent w-full justify-center">
                   Register For A Seminar
                 </Link>
-                <Link href="/seminars" className="btn-outline-light w-full justify-center">
+                <Link href="/seminars#dates" className="btn-outline-light w-full justify-center">
                   View Seminar Dates
                 </Link>
               </div>

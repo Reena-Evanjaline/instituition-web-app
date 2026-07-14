@@ -11,14 +11,18 @@ import { Home, Calendar, Phone, Menu, UserPlus } from "lucide-react";
  */
 const sideItems = [
   { href: "/", label: "Home", Icon: Home },
-  { href: "/seminars", label: "Seminars", Icon: Calendar },
+  // Jump straight to the upcoming dates section, not the top of the page.
+  { href: "/seminars#dates", label: "Seminars", Icon: Calendar },
   { href: "/contact", label: "Contact", Icon: Phone },
 ] as const;
 
 export function MobileNav() {
   const pathname = usePathname();
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const isActive = (href: string) => {
+    // usePathname() never includes the #hash, so compare on the path only.
+    const path = href.split("#")[0];
+    return path === "/" ? pathname === "/" : pathname.startsWith(path);
+  };
 
   return (
     <nav
