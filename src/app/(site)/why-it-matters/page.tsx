@@ -122,8 +122,8 @@ export default async function WhyPage() {
             <div className="grid gap-8 lg:grid-cols-2">
               <div className="img-zoom relative min-h-[260px]">
                 <Image
-                  src="/images/why-training.jpg"
-                  alt="Tribal professionals collaborating"
+                  src="/images/why-training-v2.jpg"
+                  alt="Three tribal professionals collaborating around a laptop"
                   fill
                   sizes="(max-width:1024px) 100vw, 50vw"
                   className="object-cover"
